@@ -1906,34 +1906,154 @@ html.dark-mode .message-partheaders {
     margin: 10px 0 !important;
 }
 
-// Settings, Contacts & Compose forms as clean MartFlow surface cards
-.formcontainer {
-    background-color: var(--mf-canvas);
+// Settings, Contacts, Sieve Filters & Edit Forms as ONE unified opaque MartFlow card
+// (formcontent = solid card body above iframe bg patterns, formbuttons = seamlessly docked card footer)
+html.iframe body > .formcontent {
+    position: relative;
+    z-index: 1;
+}
 
-    & > .formcontent:not(.popupmenu) {
-        padding: 20px 24px !important;
+.formcontainer:not(#compose-content):not(.searchoptions) {
+    background-color: var(--mf-canvas);
+    padding: 20px 24px;
+    box-sizing: border-box;
+
+    @media screen and (max-width: @screen-width-xs) {
+        padding: 12px;
     }
 
-    & > .formcontent > form,
-    & > .formcontent > fieldset,
-    & > .formcontent > .propform {
-        background-color: var(--mf-surface);
+    & > .formcontent:not(.popupmenu) {
+        position: relative;
+        z-index: 1;
+        flex: 0 1 auto;
+        min-height: 0;
+        background-color: var(--mf-surface) !important;
         border: 1px solid var(--mf-border-subtle);
         border-radius: var(--mf-radius-xl);
-        padding: 20px 24px;
+        padding: 20px 24px !important;
         box-shadow: var(--mf-shadow-sm);
+
+        @media screen and (max-width: @screen-width-xs) {
+            padding: 16px !important;
+        }
+
+        // Inner form/fieldset lives natively inside the outer opaque card (no double card box)
+        & > form,
+        & > fieldset,
+        & > .propform {
+            background-color: transparent !important;
+            border: 0 !important;
+            border-radius: 0 !important;
+            padding: 0 !important;
+            box-shadow: none !important;
+        }
+
+        // Seamless docking with visible .formbuttons footer below
+        &:has(+ .formbuttons:not(:empty)) {
+            border-bottom: 0;
+            border-bottom-left-radius: 0;
+            border-bottom-right-radius: 0;
+        }
+
+        // Section legends inside settings/filters cards
+        legend {
+            color: var(--mf-text-primary);
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+        }
+
+        // Managesieve rule & action rows inside #filter-form: crisp opaque inner bands
+        .rulerow,
+        .actionrow {
+            background-color: var(--mf-surface-alt);
+            border: 1px solid var(--mf-border-subtle);
+            border-radius: var(--mf-radius-md);
+            padding: 10px 12px;
+            margin-bottom: 10px;
+
+            table.compact-table {
+                width: 100%;
+                margin: 0;
+                background-color: transparent;
+            }
+
+            td.rowbuttons a {
+                color: var(--mf-text-muted);
+
+                &:hover:not(.disabled) {
+                    color: var(--mf-accent);
+                }
+            }
+
+            &:last-child {
+                margin-bottom: 0;
+            }
+        }
+
+        // Raw Sieve CodeMirror editor fills available height inside the unified card
+        &.raweditor {
+            flex: 1 1 auto;
+            display: flex;
+            flex-direction: column;
+
+            form {
+                flex: 1 1 auto;
+                min-height: 0;
+            }
+
+            .CodeMirror {
+                background-color: var(--mf-input-bg);
+                color: var(--mf-text-primary);
+                border: 1px solid var(--mf-border);
+                border-radius: var(--mf-radius-md);
+            }
+        }
     }
 
     & > .formbuttons {
-        background-color: var(--mf-header);
-        border-top: 1px solid var(--mf-border);
-        padding: 12px 24px !important;
+        position: relative;
+        z-index: 2;
+        flex: 0 0 auto;
+        background-color: var(--mf-surface-alt) !important;
+        border: 1px solid var(--mf-border-subtle);
+        border-top: 1px solid var(--mf-border-subtle);
+        border-radius: 0 0 var(--mf-radius-xl) var(--mf-radius-xl);
+        padding: 14px 24px !important;
+        margin: 0;
+        box-shadow: var(--mf-shadow-sm);
+
+        @media screen and (max-width: @screen-width-xs) {
+            padding: 12px 16px !important;
+        }
+
+        &:empty {
+            display: none;
+        }
+    }
+
+    // On small/phone layouts Elastic hides .formbuttons (moved to mobile header toolbar)
+    html.layout-small &,
+    html.layout-phone & {
+        & > .formcontent:not(.popupmenu):has(+ .formbuttons:not(:empty)) {
+            border-bottom: 1px solid var(--mf-border-subtle);
+            border-bottom-left-radius: var(--mf-radius-xl);
+            border-bottom-right-radius: var(--mf-radius-xl);
+        }
     }
 }
 
 // Compose view — unified MartFlow writing card (toolbar + editor seamlessly fused)
 #compose-content {
     background-color: var(--mf-canvas);
+
+    & > .formbuttons {
+        position: relative;
+        z-index: 1;
+        background-color: var(--mf-header);
+        border-top: 1px solid var(--mf-border);
+        padding: 12px 24px !important;
+    }
 
     & > form.formcontent {
         background: transparent !important;
