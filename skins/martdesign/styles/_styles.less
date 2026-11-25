@@ -639,58 +639,31 @@ html.dark-mode body.task-login {
         .a-p4 { animation: md-hex-trace-4 21s linear infinite; }
         .a-p5 { animation: md-hex-trace-5 21s linear infinite; }
 
-        // Heartbeat (v2.9): lattice dots of the dot field light up in orange with a double
-        // beat (lub-dub) and a thin ring that expands from them, one dot every 1.6s
-        // (9.6s cycle, the design system cadence). Drawn outside the fade mask.
-        .md-beat-dot,
-        .md-beat-ring {
+        // Heartbeat (v2.10). Every 1.6s the heart beats (lub-dub): a different set of
+        // field dots lights up in orange, expands, shrinks and goes out (6 sets = 9.6s,
+        // the design system cadence). The 6 dots of the central hexagon stay lit, small
+        // like every other dot, and expand on every beat with the field.
+        .md-pulse circle,
+        .md-heart circle {
+            fill: var(--accent);
             transform-box: fill-box;
             transform-origin: center;
+        }
+
+        .md-pulse circle {
             opacity: 0;
+            animation: md-pulse 9.6s ease-in-out infinite;
         }
 
-        .md-beat-dot {
-            fill: var(--accent);
-            animation: md-beat-dot 9.6s ease-out infinite;
+        .md-pulse-2 circle { animation-delay: 1.6s; }
+        .md-pulse-3 circle { animation-delay: 3.2s; }
+        .md-pulse-4 circle { animation-delay: 4.8s; }
+        .md-pulse-5 circle { animation-delay: 6.4s; }
+        .md-pulse-6 circle { animation-delay: 8s; }
+
+        .md-heart circle {
+            animation: md-heart 1.6s ease-in-out infinite;
         }
-
-        .md-beat-ring {
-            fill: none;
-            stroke: var(--accent);
-            stroke-width: 1.5;
-            vector-effect: non-scaling-stroke;
-            animation: md-beat-ring 9.6s ease-out infinite;
-        }
-
-        .md-beat-1 > * { animation-delay: 0.3s; }
-        .md-beat-2 > * { animation-delay: 1.9s; }
-        .md-beat-3 > * { animation-delay: 3.5s; }
-        .md-beat-4 > * { animation-delay: 5.1s; }
-        .md-beat-5 > * { animation-delay: 6.7s; }
-        .md-beat-6 > * { animation-delay: 8.3s; }
-    }
-
-    // Two blurred orange glows (v2.9), bottom-left and top-right quadrants, under the
-    // hex patterns. Each one is an SVG radial gradient (opaque center, transparent edge)
-    // in its own pair of orange tones, softened by a CSS blur.
-    .md-login-glow {
-        position: absolute;
-        width: min(42vmin, 460px);
-        height: min(42vmin, 460px);
-        transform: translate(-50%, -50%);
-        filter: blur(40px) saturate(1.25);
-        opacity: 0.55;
-        pointer-events: none;
-    }
-
-    .md-glow-bl {
-        left: 20%;
-        top: 78%;
-    }
-
-    .md-glow-tr {
-        left: 82%;
-        top: 20%;
     }
 
     // Top-left quadrant: static hex dot field (epicenter upper-left)
@@ -881,35 +854,28 @@ html.dark-mode body.task-login {
     97.2%, 100% { stroke-dashoffset: -101; }
 }
 
-// Login glows on Carbono: lighten (screen) so they read as embers, not brown stains
-// (top level, same specificity as the .task-login base list and declared after it)
-html.dark-mode body.task-login .md-login-glow {
-    filter: blur(40px);
-    opacity: 0.7;
-    mix-blend-mode: screen;
+// One heartbeat inside the 9.6s cycle of a set (lub 0.16s, dub 0.52s, out at 1s)
+@keyframes md-pulse {
+    0%     { opacity: 0; transform: scale(0.6); }
+    1.67%  { opacity: 1; transform: scale(2.2); }
+    3.75%  { opacity: 1; transform: scale(1.2); }
+    5.42%  { opacity: 1; transform: scale(1.8); }
+    8.33%  { opacity: 1; transform: scale(1); }
+    10.42% { opacity: 0; transform: scale(0.6); }
+    100%   { opacity: 0; transform: scale(0.6); }
 }
 
-// Heartbeat: lub (big) - short rest - dub (smaller) - back to the grey dot
-@keyframes md-beat-dot {
-    0%   { opacity: 0; transform: scale(0.6); }
-    1.5% { opacity: 1; transform: scale(1.8); }
-    4%   { opacity: 1; transform: scale(1.05); }
-    6.5% { opacity: 1; transform: scale(1.5); }
-    10%  { opacity: 1; transform: scale(1); }
-    15%  { opacity: 0; transform: scale(0.8); }
-    100% { opacity: 0; transform: scale(0.8); }
+// The always-lit hexagon beats with every set (same lub / dub instants, 1.6s period)
+@keyframes md-heart {
+    0%        { transform: scale(1); }
+    10%       { transform: scale(2.2); }
+    22.5%     { transform: scale(1.2); }
+    32.5%     { transform: scale(1.8); }
+    50%, 100% { transform: scale(1); }
 }
 
-// Ring born with the "lub", expanding outward and dissolving before the next dot beats
-@keyframes md-beat-ring {
-    0%, 1% { opacity: 0;    transform: scale(1); }
-    1.5%   { opacity: 0.85; transform: scale(1.2); }
-    13%    { opacity: 0;    transform: scale(5); }
-    100%   { opacity: 0;    transform: scale(5); }
-}
-
-// Reduced motion: no movement, one route already drawn and the beat dots lit
-// in orange (the stage is never empty)
+// Reduced motion: no movement, one route already drawn and the central hexagon
+// lit in orange (the stage is never empty)
 @media (prefers-reduced-motion: reduce) {
     .task-login .md-login-hex-svg .a-p1 {
         animation: none !important;
@@ -921,14 +887,13 @@ html.dark-mode body.task-login .md-login-glow {
         display: none !important;
     }
 
-    .task-login .md-login-hex-svg .md-beat-dot {
-        animation: none !important;
-        opacity: 1 !important;
-        transform: none !important;
+    .task-login .md-login-hex-svg .md-pulse {
+        display: none !important;
     }
 
-    .task-login .md-login-hex-svg .md-beat-ring {
-        display: none !important;
+    .task-login .md-login-hex-svg .md-heart circle {
+        animation: none !important;
+        transform: none !important;
     }
 }
 
