@@ -7293,6 +7293,84 @@ html.dark-mode .task-login .md-login-hex-svg .a-p5,
 html.dark-mode body.task-login .md-login-hex-svg .a-p5 {
   animation: md-hex-trace-5 21s linear infinite;
 }
+.task-login .md-login-hex-svg .md-beat-dot,
+html.dark-mode .task-login .md-login-hex-svg .md-beat-dot,
+html.dark-mode body.task-login .md-login-hex-svg .md-beat-dot,
+.task-login .md-login-hex-svg .md-beat-ring,
+html.dark-mode .task-login .md-login-hex-svg .md-beat-ring,
+html.dark-mode body.task-login .md-login-hex-svg .md-beat-ring {
+  transform-box: fill-box;
+  transform-origin: center;
+  opacity: 0;
+}
+.task-login .md-login-hex-svg .md-beat-dot,
+html.dark-mode .task-login .md-login-hex-svg .md-beat-dot,
+html.dark-mode body.task-login .md-login-hex-svg .md-beat-dot {
+  fill: var(--accent);
+  animation: md-beat-dot 9.6s ease-out infinite;
+}
+.task-login .md-login-hex-svg .md-beat-ring,
+html.dark-mode .task-login .md-login-hex-svg .md-beat-ring,
+html.dark-mode body.task-login .md-login-hex-svg .md-beat-ring {
+  fill: none;
+  stroke: var(--accent);
+  stroke-width: 1.5;
+  vector-effect: non-scaling-stroke;
+  animation: md-beat-ring 9.6s ease-out infinite;
+}
+.task-login .md-login-hex-svg .md-beat-1 > *,
+html.dark-mode .task-login .md-login-hex-svg .md-beat-1 > *,
+html.dark-mode body.task-login .md-login-hex-svg .md-beat-1 > * {
+  animation-delay: 0.3s;
+}
+.task-login .md-login-hex-svg .md-beat-2 > *,
+html.dark-mode .task-login .md-login-hex-svg .md-beat-2 > *,
+html.dark-mode body.task-login .md-login-hex-svg .md-beat-2 > * {
+  animation-delay: 1.9s;
+}
+.task-login .md-login-hex-svg .md-beat-3 > *,
+html.dark-mode .task-login .md-login-hex-svg .md-beat-3 > *,
+html.dark-mode body.task-login .md-login-hex-svg .md-beat-3 > * {
+  animation-delay: 3.5s;
+}
+.task-login .md-login-hex-svg .md-beat-4 > *,
+html.dark-mode .task-login .md-login-hex-svg .md-beat-4 > *,
+html.dark-mode body.task-login .md-login-hex-svg .md-beat-4 > * {
+  animation-delay: 5.1s;
+}
+.task-login .md-login-hex-svg .md-beat-5 > *,
+html.dark-mode .task-login .md-login-hex-svg .md-beat-5 > *,
+html.dark-mode body.task-login .md-login-hex-svg .md-beat-5 > * {
+  animation-delay: 6.7s;
+}
+.task-login .md-login-hex-svg .md-beat-6 > *,
+html.dark-mode .task-login .md-login-hex-svg .md-beat-6 > *,
+html.dark-mode body.task-login .md-login-hex-svg .md-beat-6 > * {
+  animation-delay: 8.3s;
+}
+.task-login .md-login-glow,
+html.dark-mode .task-login .md-login-glow,
+html.dark-mode body.task-login .md-login-glow {
+  position: absolute;
+  width: min(42vmin, 460px);
+  height: min(42vmin, 460px);
+  transform: translate(-50%, -50%);
+  filter: blur(40px) saturate(1.25);
+  opacity: 0.55;
+  pointer-events: none;
+}
+.task-login .md-glow-bl,
+html.dark-mode .task-login .md-glow-bl,
+html.dark-mode body.task-login .md-glow-bl {
+  left: 20%;
+  top: 78%;
+}
+.task-login .md-glow-tr,
+html.dark-mode .task-login .md-glow-tr,
+html.dark-mode body.task-login .md-glow-tr {
+  left: 82%;
+  top: 20%;
+}
 .task-login .md-hex-pontos,
 html.dark-mode .task-login .md-hex-pontos,
 html.dark-mode body.task-login .md-hex-pontos {
@@ -7524,6 +7602,60 @@ html.dark-mode body.task-login #login-footer a:hover {
     stroke-dashoffset: -101;
   }
 }
+html.dark-mode body.task-login .md-login-glow {
+  filter: blur(40px);
+  opacity: 0.7;
+  mix-blend-mode: screen;
+}
+@keyframes md-beat-dot {
+  0% {
+    opacity: 0;
+    transform: scale(0.6);
+  }
+  1.5% {
+    opacity: 1;
+    transform: scale(1.8);
+  }
+  4% {
+    opacity: 1;
+    transform: scale(1.05);
+  }
+  6.5% {
+    opacity: 1;
+    transform: scale(1.5);
+  }
+  10% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  15% {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+}
+@keyframes md-beat-ring {
+  0%,
+  1% {
+    opacity: 0;
+    transform: scale(1);
+  }
+  1.5% {
+    opacity: 0.85;
+    transform: scale(1.2);
+  }
+  13% {
+    opacity: 0;
+    transform: scale(5);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(5);
+  }
+}
 @media (prefers-reduced-motion: reduce) {
   .task-login .md-login-hex-svg .a-p1 {
     animation: none !important;
@@ -7531,6 +7663,14 @@ html.dark-mode body.task-login #login-footer a:hover {
     stroke-dashoffset: 0 !important;
   }
   .task-login .md-login-hex-svg .a:not(.a-p1) {
+    display: none !important;
+  }
+  .task-login .md-login-hex-svg .md-beat-dot {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  .task-login .md-login-hex-svg .md-beat-ring {
     display: none !important;
   }
 }
