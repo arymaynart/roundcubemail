@@ -4,30 +4,141 @@
 <meta charset="UTF-8">
 <title></title>
 <style type="text/css">
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 300 700;
+  font-display: swap;
+  src: url('fonts/inter-latin-ext.woff2') format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 300 700;
+  font-display: swap;
+  src: url('fonts/inter-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+:root {
+  --wm-canvas: #eceae0;
+  --wm-tile: #dedad0;
+  --wm-tile-border: #d4cfbf;
+  --wm-title: #1a1a1a;
+  --wm-sub: #8a8070;
+  --wm-accent: #f5471f;
+}
+
+html.dark-mode {
+  --wm-canvas: #0d0d0d;
+  --wm-tile: #1a1a1a;
+  --wm-tile-border: #2a2a2a;
+  --wm-title: #fcf9e0;
+  --wm-sub: #a09880;
+  --wm-accent: #f5471f;
+}
+
+* {
+  box-sizing: border-box;
+}
+
 html, body {
   height: 100%;
   margin: 0;
   padding: 0;
   overflow: hidden;
 }
+
 body {
   position: relative;
-  background-color: #f3f0e4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--wm-canvas);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  transition: background-color 180ms ease;
 }
+
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: min(360px, 50vw);
+  height: min(320px, 45vh);
+  background: url('images/pontos-hex-creme.svg') left top / contain no-repeat;
+  opacity: 0.45;
+  pointer-events: none;
+  z-index: 0;
+}
+
 body::after {
   content: "";
-  position: absolute;
-  inset: 0;
-  background: url(images/logo.svg) center no-repeat;
-  background-size: min(140px, 28%);
-  opacity: 0.14;
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  width: min(380px, 52vw);
+  height: min(380px, 52vh);
+  background: url('images/bg-symbol-creme.svg') right bottom / contain no-repeat;
+  opacity: 0.45;
   pointer-events: none;
+  z-index: 0;
 }
-html.dark-mode body {
-  background-color: #1a1a1a;
+
+html.dark-mode body::before {
+  background-image: url('images/pontos-hex-carbono.svg');
+  opacity: 0.55;
 }
+
 html.dark-mode body::after {
-  opacity: 0.12;
+  background-image: url('images/bg-symbol-carbono.svg');
+  opacity: 0.6;
+}
+
+.empty-state {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  max-width: 340px;
+  padding: 24px;
+}
+
+.empty-icon {
+  width: 60px;
+  height: 60px;
+  border-radius: 16px;
+  background-color: var(--wm-tile);
+  border: 1px solid var(--wm-tile-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 18px;
+  color: var(--wm-accent);
+}
+
+.empty-icon svg {
+  width: 28px;
+  height: 28px;
+}
+
+.empty-title {
+  margin: 0 0 8px;
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: var(--wm-title);
+}
+
+.empty-subtitle {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.55;
+  color: var(--wm-sub);
 }
 </style>
 <script>
@@ -40,5 +151,15 @@ html.dark-mode body::after {
   } catch (e) { }
 </script>
 </head>
-<body></body>
+<body>
+  <div class="empty-state">
+    <div class="empty-icon" aria-hidden="true">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.75" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
+      </svg>
+    </div>
+    <h2 class="empty-title">Nenhum e-mail selecionado</h2>
+    <p class="empty-subtitle">Escolha uma mensagem na lista ao lado para visualizar os detalhes, responder ou organizar.</p>
+  </div>
+</body>
 </html>
