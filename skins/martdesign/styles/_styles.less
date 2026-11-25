@@ -583,7 +583,7 @@ html.dark-mode body.task-login {
         text-align: left;
     }
 
-    // Inline hexagonal patterns: static dots top-left (60% h), animated grid bottom-right (60% h)
+    // Inline hexagonal patterns: static neutral grid top-left (60% h), animated grid bottom-right (60% h)
     .md-login-hex-stage {
         position: fixed;
         inset: 0;
@@ -612,12 +612,6 @@ html.dark-mode body.task-login {
             fill: var(--pattern-line);
         }
 
-        .af {
-            fill: var(--accent);
-            stroke: var(--page);
-            stroke-width: 2;
-        }
-
         // Orange tracer (v2.8): drawn OUTSIDE the fade mask, so it never fades.
         // One dash per route (30% of the route + a gap longer than the route): it is
         // born at the first vertex, grows, runs at constant speed along the grid edges
@@ -638,36 +632,11 @@ html.dark-mode body.task-login {
         .a-p3 { animation: md-hex-trace-3 21s linear infinite; }
         .a-p4 { animation: md-hex-trace-4 21s linear infinite; }
         .a-p5 { animation: md-hex-trace-5 21s linear infinite; }
-
-        // Heartbeat (v2.10). Every 1.6s the heart beats (lub-dub): a different set of
-        // field dots lights up in orange, expands, shrinks and goes out (6 sets = 9.6s,
-        // the design system cadence). The 6 dots of the central hexagon stay lit, small
-        // like every other dot, and expand on every beat with the field.
-        .md-pulse circle,
-        .md-heart circle {
-            fill: var(--accent);
-            transform-box: fill-box;
-            transform-origin: center;
-        }
-
-        .md-pulse circle {
-            opacity: 0;
-            animation: md-pulse 9.6s ease-in-out infinite;
-        }
-
-        .md-pulse-2 circle { animation-delay: 1.6s; }
-        .md-pulse-3 circle { animation-delay: 3.2s; }
-        .md-pulse-4 circle { animation-delay: 4.8s; }
-        .md-pulse-5 circle { animation-delay: 6.4s; }
-        .md-pulse-6 circle { animation-delay: 8s; }
-
-        .md-heart circle {
-            animation: md-heart 1.6s ease-in-out infinite;
-        }
     }
 
-    // Top-left quadrant: static hex dot field (epicenter upper-left)
-    .md-hex-pontos {
+    // Top-left quadrant (v2.11): static neutral hex grid, quieter than the animated one
+    // (cell radius 44 = design system "grade"; the bottom-right "rede" uses 40)
+    .md-hex-grade {
         top: 0;
         left: 0;
         opacity: 0.9;
@@ -854,28 +823,7 @@ html.dark-mode body.task-login {
     97.2%, 100% { stroke-dashoffset: -101; }
 }
 
-// One heartbeat inside the 9.6s cycle of a set (lub 0.16s, dub 0.52s, out at 1s)
-@keyframes md-pulse {
-    0%     { opacity: 0; transform: scale(0.6); }
-    1.67%  { opacity: 1; transform: scale(2.2); }
-    3.75%  { opacity: 1; transform: scale(1.2); }
-    5.42%  { opacity: 1; transform: scale(1.8); }
-    8.33%  { opacity: 1; transform: scale(1); }
-    10.42% { opacity: 0; transform: scale(0.6); }
-    100%   { opacity: 0; transform: scale(0.6); }
-}
-
-// The always-lit hexagon beats with every set (same lub / dub instants, 1.6s period)
-@keyframes md-heart {
-    0%        { transform: scale(1); }
-    10%       { transform: scale(2.2); }
-    22.5%     { transform: scale(1.2); }
-    32.5%     { transform: scale(1.8); }
-    50%, 100% { transform: scale(1); }
-}
-
-// Reduced motion: no movement, one route already drawn and the central hexagon
-// lit in orange (the stage is never empty)
+// Reduced motion: no movement, one route already drawn (the stage is never empty)
 @media (prefers-reduced-motion: reduce) {
     .task-login .md-login-hex-svg .a-p1 {
         animation: none !important;
@@ -885,15 +833,6 @@ html.dark-mode body.task-login {
 
     .task-login .md-login-hex-svg .a:not(.a-p1) {
         display: none !important;
-    }
-
-    .task-login .md-login-hex-svg .md-pulse {
-        display: none !important;
-    }
-
-    .task-login .md-login-hex-svg .md-heart circle {
-        animation: none !important;
-        transform: none !important;
     }
 }
 
