@@ -1,0 +1,890 @@
+/**
+ * mARTdesign Visual Identity Overrides for Roundcube Webmail (extends Elastic)
+ *
+ * Self-hosted Inter & Comfortaa fonts, Creme (Light) + Carbono (Dark) polish,
+ * login shell, Carbono task rail, high-contrast quota bar, and crisp accessibility.
+ */
+
+// -----------------------------------------------------------------
+// Self-hosted Typography (Inter body + Comfortaa brand headings)
+// -----------------------------------------------------------------
+@font-face {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 300 700;
+    font-display: swap;
+    src: url('../fonts/inter-latin-ext.woff2') format('woff2');
+    unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+@font-face {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 300 700;
+    font-display: swap;
+    src: url('../fonts/inter-latin.woff2') format('woff2');
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+    font-family: 'Comfortaa';
+    font-style: normal;
+    font-weight: 300 700;
+    font-display: swap;
+    src: url('../fonts/comfortaa-latin-ext.woff2') format('woff2');
+    unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+@font-face {
+    font-family: 'Comfortaa';
+    font-style: normal;
+    font-weight: 300 700;
+    font-display: swap;
+    src: url('../fonts/comfortaa-latin.woff2') format('woff2');
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@md-font-body:    'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+@md-font-display: 'Comfortaa', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+
+body,
+button,
+input,
+optgroup,
+select,
+textarea,
+.popover,
+.ui-widget,
+.ui-widget input,
+.ui-widget select,
+.ui-widget textarea,
+.ui-widget button {
+    font-family: @md-font-body;
+}
+
+.frame-content h2,
+.frame-content h3,
+.propform legend,
+.formcontent legend,
+#message-header > .subject,
+.ui-dialog .ui-dialog-title {
+    font-family: @md-font-display;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+}
+
+// -----------------------------------------------------------------
+// Focus rings & Buttons (mARTdesign flat + accent-deep hover)
+// -----------------------------------------------------------------
+.btn-primary {
+    font-family: @md-font-display;
+    font-weight: 600;
+    background-color: @md-accent;
+    border-color: @md-accent;
+    color: #ffffff;
+
+    &:hover:not(:disabled):not(.disabled) {
+        background-color: @md-accent-deep;
+        border-color: @md-accent-deep;
+        color: #ffffff;
+    }
+
+    &:focus,
+    &:not(:disabled):not(.disabled):active {
+        background-color: @md-accent-deep;
+        border-color: @md-accent-deep;
+        color: #ffffff;
+        box-shadow: 0 0 0 3px rgba(244, 119, 33, 0.35);
+    }
+}
+
+.btn-secondary {
+    font-weight: 500;
+    background-color: @md-carbono-page;
+    border-color: @md-carbono-page;
+    color: #ffffff;
+
+    &:hover:not(:disabled):not(.disabled) {
+        background-color: @md-carbono-card;
+        border-color: @md-carbono-card;
+        color: #ffffff;
+    }
+}
+
+.form-control,
+.custom-select,
+.btn {
+    border-radius: 4px;
+}
+
+.form-control:focus,
+.custom-select:focus {
+    border-color: @md-accent;
+    box-shadow: 0 0 0 3px rgba(244, 119, 33, 0.25);
+}
+
+// -----------------------------------------------------------------
+// Login Screen (Creme & Carbono with official quadrant symbol)
+// -----------------------------------------------------------------
+.task-login {
+    background-color: @md-creme-page;
+
+    #layout {
+        background-color: @md-creme-page;
+    }
+
+    #layout-content.martdesign-login-shell {
+        position: relative;
+        display: flex !important;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        min-height: 100%;
+        width: 100%;
+        padding: 2rem 1.25rem;
+        background-color: @md-creme-page;
+        overflow-y: auto;
+        text-align: left;
+    }
+
+    .martdesign-login-bg {
+        position: fixed;
+        inset: 0;
+        background: url('../images/bg-symbol-creme.svg') right bottom no-repeat;
+        background-size: min(560px, 65vw) auto;
+        pointer-events: none;
+        z-index: 0;
+    }
+
+    .martdesign-login-card {
+        position: relative;
+        z-index: 1;
+        width: 100%;
+        max-width: 400px;
+        background-color: @md-creme-card;
+        border: 1px solid @md-creme-border-strong;
+        border-top: 4px solid @md-accent;
+        border-radius: 6px;
+        padding: 2.25rem 2rem 1.75rem;
+        box-shadow: 0 2px 10px rgba(26, 26, 26, 0.06);
+
+        @media screen and (max-width: @screen-width-xs) {
+            padding: 1.75rem 1.25rem 1.5rem;
+        }
+    }
+
+    .martdesign-login-brand {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 1.75rem;
+        text-align: center;
+    }
+
+    #logo {
+        position: static;
+        top: auto;
+        display: block;
+        width: auto;
+        max-width: 220px;
+        height: 54px;
+        max-height: 54px;
+        margin: 0 auto 0.75rem;
+        object-fit: contain;
+    }
+
+    .martdesign-login-eyebrow {
+        display: inline-block;
+        font-family: @md-font-display;
+        font-size: 0.75rem;
+        font-weight: 700;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: @md-accent-text-creme;
+        padding-top: 0.25rem;
+    }
+
+    #login-form {
+        position: static;
+        top: auto;
+        width: 100%;
+        max-width: 100%;
+        margin: 0;
+
+        table {
+            width: 100%;
+            margin-bottom: 0.25rem;
+        }
+
+        tbody {
+            width: 100%;
+        }
+
+        .form-group.row {
+            margin-bottom: 0.875rem;
+        }
+
+        .input-group-text {
+            background-color: @md-creme-inset;
+            border-color: @md-creme-border-strong;
+            color: @md-creme-body;
+            min-width: 2.65rem;
+            justify-content: center;
+        }
+
+        .form-control {
+            height: 44px;
+            font-size: 0.9375rem;
+            border-color: @md-creme-border-strong;
+            background-color: @md-creme-card;
+            color: @md-creme-ink;
+
+            &:focus {
+                border-color: @md-accent;
+                box-shadow: 0 0 0 3px rgba(244, 119, 33, 0.25);
+            }
+        }
+
+        .formbuttons {
+            margin-top: 1.25rem;
+            padding: 0;
+        }
+
+        #rcmloginsubmit {
+            width: 100%;
+            min-height: 46px;
+            font-family: @md-font-display;
+            font-size: 0.95rem;
+            font-weight: 600;
+            letter-spacing: 0.02em;
+            text-transform: none;
+            background-color: @md-accent;
+            border-color: @md-accent;
+            color: #ffffff;
+
+            &:hover {
+                background-color: @md-accent-deep;
+                border-color: @md-accent-deep;
+            }
+        }
+    }
+
+    #login-footer {
+        margin-top: 1.5rem;
+        padding-top: 1rem;
+        border-top: 1px solid @md-creme-border;
+        text-align: center;
+        font-size: 0.8125rem;
+        color: @md-creme-body;
+
+        a {
+            color: @md-accent-text-creme;
+            font-weight: 600;
+            text-decoration: none;
+
+            &:hover {
+                color: @md-accent-deep;
+                text-decoration: underline;
+            }
+        }
+    }
+}
+
+// -----------------------------------------------------------------
+// Carbono Left Navigation Rail (#layout-menu & #taskmenu)
+// -----------------------------------------------------------------
+#layout-menu {
+    .popover-header {
+        background-color: @md-carbono-page !important;
+        border-bottom: 1px solid @md-carbono-border;
+
+        img#logo {
+            opacity: 1 !important;
+            padding: 0.55rem;
+            max-height: @layout-header-height;
+            object-fit: contain;
+        }
+    }
+
+    @media screen and (min-width: (@screen-width-xs + 1px)) {
+        background-color: @md-carbono-page;
+        border-right: 1px solid @md-carbono-border;
+    }
+
+    html.layout-phone & {
+        background-color: @md-carbono-page;
+
+        .popover-header {
+            background-color: @md-carbono-page !important;
+            border-bottom: 1px solid @md-carbono-border;
+            padding: 0 0.75rem;
+
+            img#logo {
+                padding: 0.45rem 0;
+                max-height: 44px;
+            }
+
+            a.cancel {
+                color: #ffffff;
+            }
+        }
+    }
+}
+
+#taskmenu {
+    a {
+        position: relative;
+        color: #d6d2c7;
+        transition: background-color 0.14s ease, color 0.14s ease;
+
+        &:hover,
+        &:focus {
+            color: #ffffff;
+            background-color: @md-carbono-card;
+        }
+
+        &.selected {
+            color: #ffffff;
+            background-color: @md-carbono-card;
+
+            &::after {
+                content: "";
+                position: absolute;
+                left: 0;
+                top: 0;
+                bottom: 0;
+                width: 3px;
+                background-color: @md-accent;
+            }
+        }
+
+        &.logout {
+            color: @md-danger-text-carbono;
+
+            &:hover,
+            &:focus {
+                color: #ffffff;
+                background-color: @md-danger;
+            }
+        }
+    }
+
+    .action-buttons {
+        a.compose {
+            color: #ffffff !important;
+            background-color: @md-accent !important;
+            font-weight: 600;
+
+            &:hover,
+            &:focus {
+                color: #ffffff !important;
+                background-color: @md-accent-deep !important;
+            }
+
+            &.selected {
+                background-color: @md-accent-deep !important;
+
+                &::after {
+                    background-color: #ffffff;
+                }
+            }
+        }
+    }
+
+    html.layout-phone & {
+        a {
+            color: #e8e4dc;
+            border-color: @md-carbono-border !important;
+
+            &:hover,
+            &:focus,
+            &.selected {
+                color: #ffffff;
+                background-color: @md-carbono-card;
+            }
+        }
+    }
+}
+
+// -----------------------------------------------------------------
+// Workspace Layout — Creme Refinements
+// -----------------------------------------------------------------
+#layout-sidebar {
+    background-color: @md-creme-page;
+    border-right-color: @md-creme-border-strong;
+
+    & > .header {
+        background-color: @md-creme-panel;
+        border-bottom-color: @md-creme-border-strong;
+        color: @md-creme-ink;
+    }
+
+    & > .footer {
+        background-color: @md-creme-page;
+        border-top-color: @md-creme-border-strong;
+    }
+}
+
+#layout-list {
+    background-color: @md-creme-card;
+    border-right-color: @md-creme-border-strong;
+
+    & > .header {
+        background-color: @md-creme-page;
+        border-bottom-color: @md-creme-border-strong;
+    }
+
+    & > .footer {
+        background-color: @md-creme-page;
+        border-top-color: @md-creme-border-strong;
+    }
+}
+
+#layout-content {
+    background-color: @md-creme-card;
+
+    & > .header {
+        background-color: @md-creme-page;
+        border-bottom-color: @md-creme-border-strong;
+    }
+}
+
+.searchbar {
+    background-color: @md-creme-inset;
+    border-bottom-color: @md-creme-border-strong;
+
+    a.selected {
+        color: @md-accent-text-creme;
+    }
+}
+
+// Toolbar active state (e.g. search/filter selected)
+.menu.toolbar a.selected {
+    color: @md-accent-text-creme;
+}
+
+// Folder list & message list selection polish
+.folderlist {
+    li {
+        border-bottom-color: rgba(212, 207, 191, 0.55);
+
+        &.selected > a,
+        &.selected > div > a {
+            background-color: @md-accent-soft-creme;
+            color: @md-creme-ink;
+            font-weight: 600;
+            border-left: 3px solid @md-accent !important;
+        }
+
+        &:not(.selected) > a:hover {
+            background-color: @md-creme-panel;
+        }
+
+        &.mailbox .unreadcount {
+            background-color: @md-accent;
+            color: #ffffff;
+            border-radius: 999px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            font-variant-numeric: tabular-nums;
+            padding: 0 0.45em;
+        }
+    }
+}
+
+.messagelist {
+    tr {
+        &:hover:not(.selected) td {
+            background-color: @md-creme-inset;
+        }
+
+        &.selected td {
+            background-color: @md-accent-soft-creme;
+            color: @md-creme-ink;
+        }
+
+        &.selected > td:first-child,
+        &.selected > td.selection + td {
+            border-left-color: @md-accent;
+        }
+
+        &.unread {
+            td.subject span.subject {
+                font-weight: 700;
+                color: @md-creme-ink;
+            }
+
+            td.subject span.msgicon.status.unread:before {
+                color: @md-accent;
+            }
+        }
+    }
+}
+
+// High-contrast Quota Bar (matching PostfixAdmin mARTdesign clarity)
+.quota-widget {
+    color: @md-creme-ink;
+    max-width: 100%;
+
+    &:before {
+        color: @md-creme-body;
+    }
+
+    .count {
+        color: @md-creme-ink;
+        font-weight: 600;
+        font-variant-numeric: tabular-nums;
+    }
+
+    .bar {
+        height: 0.55rem;
+        background-color: @md-creme-panel;
+        border: 1px solid @md-creme-border-strong;
+        border-radius: 999px;
+    }
+
+    .value {
+        background-color: @md-accent;
+        opacity: 1;
+        border-radius: 999px;
+
+        &.warning {
+            background-color: @md-danger;
+        }
+    }
+}
+
+// Floating Action Button on mobile (white on orange, no muddy shadow)
+.floating-action-buttons a.button {
+    background-color: @md-accent;
+    color: #ffffff;
+    box-shadow: 0 4px 12px rgba(26, 26, 26, 0.28);
+
+    &:hover,
+    &:focus {
+        background-color: @md-accent-deep;
+        color: #ffffff;
+    }
+}
+
+// Attachments & Message headers
+.attachmentslist {
+    border: 1px solid @md-creme-border-strong;
+    background-color: @md-creme-inset;
+    border-radius: 4px;
+}
+
+.message-partheaders {
+    border-top: 1px solid @md-creme-border-strong;
+    background-color: @md-creme-inset;
+}
+
+// -----------------------------------------------------------------
+// Dark Mode — Carbono Refinements (html.dark-mode)
+// -----------------------------------------------------------------
+html.dark-mode {
+    background-color: @md-carbono-page;
+
+    body {
+        background-color: @md-carbono-page;
+        color: @md-carbono-text;
+    }
+
+    // Never dim official negative/positive SVGs in dark mode
+    #logo {
+        opacity: 1 !important;
+    }
+
+    a {
+        color: @md-accent-text-carbono;
+
+        &:hover {
+            color: #ff8b66;
+        }
+    }
+
+    // Login screen in Carbono
+    .task-login,
+    body.task-login {
+        background-color: @md-carbono-page;
+
+        #layout,
+        #layout-content.martdesign-login-shell {
+            background-color: @md-carbono-page;
+        }
+
+        .martdesign-login-bg {
+            background-image: url('../images/bg-symbol-carbono.svg');
+        }
+
+        .martdesign-login-card {
+            background-color: @md-carbono-card;
+            border-color: @md-carbono-border;
+            border-top-color: @md-accent;
+            box-shadow: none;
+        }
+
+        .martdesign-login-eyebrow {
+            color: @md-accent-text-carbono;
+        }
+
+        #login-form {
+            .input-group-text {
+                background-color: @md-carbono-panel;
+                border-color: @md-carbono-border-strong;
+                color: @md-carbono-body;
+            }
+
+            .form-control {
+                background-color: @md-carbono-page;
+                border-color: @md-carbono-border-strong;
+                color: #ffffff;
+
+                &:focus {
+                    background-color: @md-carbono-inset;
+                    border-color: @md-accent;
+                    color: #ffffff;
+                }
+            }
+        }
+
+        #login-footer {
+            border-top-color: @md-carbono-border;
+            color: @md-carbono-body;
+
+            a {
+                color: @md-accent-text-carbono;
+            }
+        }
+    }
+
+    // Distinct Carbono surface layering (page #1a1a1a / panel #202020 / card #272727)
+    #layout-menu {
+        background-color: #141414;
+        border-right: 1px solid @md-carbono-border;
+
+        .popover-header {
+            background-color: #141414 !important;
+            border-bottom: 1px solid @md-carbono-border;
+        }
+
+        .special-buttons a:not(:focus) {
+            background-color: #141414;
+        }
+    }
+
+    #layout-sidebar {
+        background-color: @md-carbono-panel;
+        border-right-color: @md-carbono-border;
+
+        & > .header {
+            background-color: @md-carbono-panel;
+            border-bottom-color: @md-carbono-border;
+            color: #ffffff;
+        }
+
+        & > .footer {
+            background-color: @md-carbono-panel;
+            border-top-color: @md-carbono-border;
+        }
+    }
+
+    #layout-list {
+        background-color: @md-carbono-page;
+        border-right-color: @md-carbono-border;
+
+        & > .header,
+        & > .footer {
+            background-color: @md-carbono-panel;
+            border-color: @md-carbono-border;
+            color: #ffffff;
+        }
+    }
+
+    #layout-content {
+        background-color: @md-carbono-page;
+
+        & > .header,
+        & > .footer {
+            background-color: @md-carbono-panel;
+            border-color: @md-carbono-border;
+            color: #ffffff;
+        }
+    }
+
+    .searchbar {
+        background-color: @md-carbono-card;
+        border-bottom-color: @md-carbono-border;
+
+        a.selected {
+            color: @md-accent-text-carbono;
+        }
+    }
+
+    .menu.toolbar a.selected {
+        color: @md-accent-text-carbono;
+    }
+
+    #taskmenu {
+        .action-buttons a.compose {
+            color: #ffffff !important;
+            background-color: @md-accent !important;
+
+            &:hover,
+            &:focus {
+                background-color: @md-accent-deep !important;
+            }
+        }
+
+        a.selected {
+            background-color: @md-carbono-card;
+            color: #ffffff;
+        }
+
+        a:hover,
+        a:focus {
+            background-color: @md-carbono-card;
+            color: #ffffff;
+        }
+    }
+
+    .folderlist {
+        li {
+            border-bottom-color: @md-carbono-border;
+
+            &.selected > a,
+            &.selected > div > a {
+                background-color: @md-accent-soft-carbono;
+                color: #ffffff;
+                border-left: 3px solid @md-accent !important;
+            }
+
+            &:not(.selected) > a:hover {
+                background-color: @md-carbono-card;
+            }
+
+            &.mailbox .unreadcount {
+                background-color: @md-accent;
+                color: #ffffff;
+                font-weight: 700;
+            }
+        }
+    }
+
+    .messagelist {
+        tr {
+            &:hover:not(.selected) td {
+                background-color: @md-carbono-panel;
+            }
+
+            &.selected td {
+                background-color: @md-accent-soft-carbono;
+                color: #ffffff;
+            }
+
+            &.unread td.subject span.subject,
+            &.unread td.subject span.subject a {
+                color: #ffffff;
+                font-weight: 700;
+            }
+
+            &.unread td.subject span.msgicon.status.unread:before {
+                color: @md-accent;
+            }
+        }
+    }
+
+    .btn-primary {
+        background-color: @md-accent;
+        border-color: @md-accent;
+        color: #ffffff;
+
+        &:hover:not(:disabled):not(.disabled) {
+            background-color: @md-accent-deep;
+            border-color: @md-accent-deep;
+            color: #ffffff;
+        }
+    }
+
+    .btn-secondary {
+        background-color: @md-carbono-border;
+        border-color: @md-carbono-border-strong;
+        color: #ffffff;
+
+        &:hover:not(:disabled):not(.disabled) {
+            background-color: @md-carbono-border-strong;
+            color: #ffffff;
+        }
+    }
+
+    .btn-link {
+        color: @md-accent-text-carbono;
+    }
+
+    .custom-switch {
+        .custom-control-label::after {
+            background-color: #ffffff;
+        }
+
+        .custom-control-input:checked ~ .custom-control-label::before {
+            background-color: @md-accent;
+            border-color: @md-accent;
+        }
+    }
+
+    .quota-widget {
+        color: @md-carbono-text;
+
+        &:before {
+            color: @md-carbono-body;
+        }
+
+        .count {
+            color: #ffffff;
+        }
+
+        .bar {
+            background-color: @md-carbono-border;
+            border-color: @md-carbono-border-strong;
+        }
+
+        .value {
+            background-color: @md-accent;
+            opacity: 1;
+
+            &.warning {
+                background-color: @md-danger;
+            }
+        }
+    }
+
+    // Preserve HTML email readability on clean white sheet in dark mode
+    .message-htmlpart {
+        background-color: #ffffff;
+        color: @md-creme-ink;
+        padding: 0.75rem;
+        border-radius: 4px;
+    }
+
+    .floating-action-buttons a.button {
+        background-color: @md-accent;
+        color: #ffffff;
+
+        &:hover,
+        &:focus {
+            background-color: @md-accent-deep;
+        }
+    }
+}
+
+// -----------------------------------------------------------------
+// Reduced Motion Respect
+// -----------------------------------------------------------------
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+    }
+}

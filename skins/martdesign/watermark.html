@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title></title>
+<style type="text/css">
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+body {
+  position: relative;
+  background-color: #f3f0e4;
+}
+body::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: url(images/logo.svg) center no-repeat;
+  background-size: min(140px, 28%);
+  opacity: 0.14;
+  pointer-events: none;
+}
+html.dark-mode body {
+  background-color: #1a1a1a;
+}
+html.dark-mode body::after {
+  opacity: 0.12;
+}
+</style>
+<script>
+  try {
+    if (document.cookie.indexOf('colorMode=dark') > -1
+      || (document.cookie.indexOf('colorMode=light') === -1 && window.matchMedia('(prefers-color-scheme: dark)').matches)
+    ) {
+      document.documentElement.className += ' dark-mode';
+    }
+  } catch (e) { }
+</script>
+</head>
+<body></body>
+</html>
