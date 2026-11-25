@@ -5,6 +5,7 @@
     "require": {
         "php": ">=8.1",
         "bacon/bacon-qr-code": "^3.0.0",
+        "bjeavons/zxcvbn-php": "^1.0",
         "guzzlehttp/guzzle": "^7.10.0",
         "guzzlehttp/promises": "^2.0",
         "league/commonmark": "^2.7",
@@ -68,7 +69,6 @@
         "symfony/process": "^6.4 || ^7.0"
     },
     "suggest": {
-        "bjeavons/zxcvbn-php": "^1.0 required for Zxcvbn password strength driver",
         "kolab/net_ldap3": "~1.1.4 required for connecting to LDAP"
     },
     "repositories": [
