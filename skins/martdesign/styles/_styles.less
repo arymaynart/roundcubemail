@@ -69,6 +69,7 @@
     --mf-surface:           #ffffff;
     --mf-surface-list:      #ffffff;
     --mf-surface-alt:       #f8f6f0;
+    --mf-card-footer:       #f3f0e4;   // action bar docked under a card (darker than the card)
     --mf-surface-hover:     #faf9f5;
     --mf-rail-hover:        rgba(26, 26, 26, 0.06);
     --mf-input-bg:          #f3f0e4;
@@ -125,6 +126,7 @@ html.dark-mode {
     --mf-surface:           #1e1e1e;
     --mf-surface-list:      #161616;
     --mf-surface-alt:       #141414;
+    --mf-card-footer:       #161616;   // action bar docked under a card (darker than the card)
     --mf-surface-hover:     #242424;
     --mf-rail-hover:        rgba(252, 249, 224, 0.07);
     --mf-input-bg:          #111111;
@@ -616,21 +618,26 @@ html.dark-mode body.task-login {
             stroke-width: 2;
         }
 
+        // Orange tracer (v2.8): drawn OUTSIDE the fade mask, so it never fades.
+        // One dash per route (30% of the route + a gap longer than the route): it is
+        // born at the first vertex, grows, runs at constant speed along the grid edges
+        // and shrinks into the last vertex. Only stroke-dashoffset is animated.
         .a {
             fill: none;
             stroke: var(--accent);
-            stroke-width: 1.5;
+            stroke-width: 2;
             stroke-linejoin: round;
             stroke-linecap: round;
             vector-effect: non-scaling-stroke;
-            stroke-dasharray: 24 160;
-            stroke-dashoffset: 30;
+            stroke-dasharray: 30 200;
+            stroke-dashoffset: 31;
         }
 
-        .a-p1 { animation: md-hex-trace-1 16s ease-in-out infinite; }
-        .a-p2 { animation: md-hex-trace-2 16s ease-in-out infinite; }
-        .a-p3 { animation: md-hex-trace-3 16s ease-in-out infinite; }
-        .a-p4 { animation: md-hex-trace-4 16s ease-in-out infinite; }
+        .a-p1 { animation: md-hex-trace-1 21s linear infinite; }
+        .a-p2 { animation: md-hex-trace-2 21s linear infinite; }
+        .a-p3 { animation: md-hex-trace-3 21s linear infinite; }
+        .a-p4 { animation: md-hex-trace-4 21s linear infinite; }
+        .a-p5 { animation: md-hex-trace-5 21s linear infinite; }
     }
 
     // Top-left quadrant: static hex dot field (epicenter upper-left)
@@ -794,29 +801,34 @@ html.dark-mode body.task-login {
     }
 }
 
-// Sequential thin orange tracer across 4 distinct hex grid paths:
-// born at start -> grows -> glides -> shrinks to 0 at end (zero fade-in/fade-out!)
+// Sequential orange tracer over 5 distinct grid routes (21s cycle, one route at a time):
+// born at the first vertex -> grows -> runs -> shrinks into the last vertex (no fade, no dots)
 @keyframes md-hex-trace-1 {
-    0%   { stroke-dashoffset: 30; }
-    23%  { stroke-dashoffset: -106; }
-    100% { stroke-dashoffset: -106; }
+    0%   { stroke-dashoffset: 31; }
+    17.2%, 100% { stroke-dashoffset: -101; }
 }
 
 @keyframes md-hex-trace-2 {
-    0%, 24%   { stroke-dashoffset: 30; }
-    48%, 100% { stroke-dashoffset: -106; }
+    0%, 20% { stroke-dashoffset: 31; }
+    37.2%, 100% { stroke-dashoffset: -101; }
 }
 
 @keyframes md-hex-trace-3 {
-    0%, 49%   { stroke-dashoffset: 30; }
-    73%, 100% { stroke-dashoffset: -106; }
+    0%, 40% { stroke-dashoffset: 31; }
+    57.2%, 100% { stroke-dashoffset: -101; }
 }
 
 @keyframes md-hex-trace-4 {
-    0%, 74%   { stroke-dashoffset: 30; }
-    98%, 100% { stroke-dashoffset: -106; }
+    0%, 60% { stroke-dashoffset: 31; }
+    77.2%, 100% { stroke-dashoffset: -101; }
 }
 
+@keyframes md-hex-trace-5 {
+    0%, 80% { stroke-dashoffset: 31; }
+    97.2%, 100% { stroke-dashoffset: -101; }
+}
+
+// Reduced motion: no movement, one route already drawn (the stage is never empty)
 @media (prefers-reduced-motion: reduce) {
     .task-login .md-login-hex-svg .a-p1 {
         animation: none !important;
@@ -824,9 +836,7 @@ html.dark-mode body.task-login {
         stroke-dashoffset: 0 !important;
     }
 
-    .task-login .md-login-hex-svg .a-p2,
-    .task-login .md-login-hex-svg .a-p3,
-    .task-login .md-login-hex-svg .a-p4 {
+    .task-login .md-login-hex-svg .a:not(.a-p1) {
         display: none !important;
     }
 }
@@ -2122,15 +2132,15 @@ html.iframe body > .formcontent {
         }
     }
 
-    // v2.7: the footer is the same surface as the card (only a hairline divider between
-    // them), so the Save bar reads as part of the card in light AND dark mode
+    // v2.8: the footer is one step darker than the card (lighter than the canvas), closing
+    // the card from below in light AND dark mode, the card's own border running around it
     & > .formbuttons {
         position: relative;
         z-index: 2;
         flex: 0 0 auto;
-        background-color: var(--mf-surface) !important;
+        background-color: var(--mf-card-footer) !important;
         border: 1px solid var(--mf-border-subtle);
-        border-top: 1px solid var(--mf-border);
+        border-top: 1px solid var(--mf-border-subtle);
         border-radius: 0 0 var(--mf-radius-xl) var(--mf-radius-xl);
         padding: 14px 24px !important;
         margin: 0;
