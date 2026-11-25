@@ -3,10 +3,20 @@
 <h1 class="voice"><roundcube:object name="productname" /> <roundcube:label name="login" /></h1>
 
 <div id="layout-content" class="selected no-navbar martdesign-login-shell" role="main">
+	<div class="martdesign-login-dots" aria-hidden="true"></div>
 	<div class="martdesign-login-bg" aria-hidden="true"></div>
+
+	<roundcube:if condition="config:dark_mode_support" />
+		<button type="button" id="md-login-theme-toggle" class="md-login-theme-btn" aria-label="Alternar tema claro/escuro" title="Alternar tema">
+			<span class="md-theme-ico" aria-hidden="true"></span>
+			<span class="md-theme-label">Escuro</span>
+		</button>
+	<roundcube:endif />
+
 	<div class="martdesign-login-card">
 		<div class="martdesign-login-brand">
 			<roundcube:object name="logo" src="/images/logo-login-light.svg" data-src-dark="/images/logo-login-dark.svg" data-src-small="/images/logo-login-light.svg" data-src-small-dark="/images/logo-login-dark.svg" id="logo" alt="mARTdesign Webmail" />
+			<span class="martdesign-login-zigzag" aria-hidden="true"></span>
 			<span class="martdesign-login-eyebrow">WEBMAIL</span>
 		</div>
 		<roundcube:form id="login-form" name="login-form" method="post" class="propform">
@@ -26,5 +36,46 @@
 <noscript>
 	<p class="noscriptwarning"><roundcube:label name="noscriptwarning" /></p>
 </noscript>
+
+<roundcube:if condition="config:dark_mode_support" />
+<script>
+(function () {
+	var btn = document.getElementById('md-login-theme-toggle');
+	if (!btn) return;
+	var html = document.documentElement;
+	var label = btn.querySelector('.md-theme-label');
+
+	function syncUI() {
+		var isDark = html.classList.contains('dark-mode');
+		if (label) {
+			label.textContent = isDark ? 'Claro' : 'Escuro';
+		}
+		var logo = document.getElementById('logo');
+		if (logo) {
+			if (!logo.dataset.mdDefaultSrc) {
+				logo.dataset.mdDefaultSrc = logo.getAttribute('src') || '';
+			}
+			var darkSrc = logo.getAttribute('data-src-dark');
+			if (isDark && darkSrc) {
+				logo.setAttribute('src', darkSrc);
+			} else if (logo.dataset.mdDefaultSrc) {
+				logo.setAttribute('src', logo.dataset.mdDefaultSrc);
+			}
+		}
+	}
+
+	syncUI();
+
+	btn.addEventListener('click', function () {
+		var nowDark = !html.classList.contains('dark-mode');
+		html.classList.toggle('dark-mode', nowDark);
+		try {
+			document.cookie = 'colorMode=' + (nowDark ? 'dark' : 'light') + '; path=/; SameSite=Lax';
+		} catch (e) {}
+		syncUI();
+	});
+})();
+</script>
+<roundcube:endif />
 
 <roundcube:include file="includes/footer.html" />

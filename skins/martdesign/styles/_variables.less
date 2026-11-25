@@ -1,12 +1,22 @@
 /**
- * mARTdesign Design System Tokens for Roundcube Webmail (extends Elastic)
+ * MartFlow / mARTdesign Design System Tokens for Roundcube Webmail (extends Elastic)
  *
- * Creme (Light) + Carbono (Dark) — flat surfaces, zero gradients,
- * white-on-orange rule, WCAG AA text contrast tokens.
+ * Creme (Light) + Carbono (Dark #0d0d0d / #161616 / #1a1a1a / #fcf9e0)
+ * Flat editorial surfaces, zero gradients, white-on-orange primary actions,
+ * calibrated contrast tokens matching PostfixAdmin & referencias-martdesign.
  */
 
 // -----------------------------------------------------------------
-// Brand & semantic palette (shared viva tokens + theme -text tokens)
+// Layout geometry overrides (aligned 56px headers & slim 60px rail)
+// -----------------------------------------------------------------
+@layout-header-height:      56px;
+@layout-menu-width:         60px;
+@layout-menu-width-sm:      60px;
+@layout-footer-height:      52px;
+@layout-footer-small-height: 44px;
+
+// -----------------------------------------------------------------
+// MartFlow Brand & Semantic Palette
 // -----------------------------------------------------------------
 @md-accent:                 #f5471f;
 @md-accent-deep:            #d83c16;
@@ -14,37 +24,53 @@
 @md-accent-text-creme:      #a83010;
 @md-accent-text-carbono:    #ff6a3d;
 @md-accent-soft-creme:      #fae8e1;
-@md-accent-soft-carbono:    #2f211c;
+@md-accent-soft-carbono:    #2b1814;
 
-@md-creme-page:             #eceae0;
-@md-creme-panel:            #dedad0;
+// Creme (Light Mode — exact MartFlow palette)
+@md-creme-canvas:           #eceae0;
+@md-creme-header:           #e8e4d8;
+@md-creme-sidebar:          #dedad0;
+@md-creme-panel-header:     #d4cfbf;
 @md-creme-card:             #ffffff;
-@md-creme-inset:            #f3f0e4;
+@md-creme-surface-alt:      #f8f6f0;
+@md-creme-surface-hover:    #faf9f5;
+@md-creme-input:            #f3f0e4;
 @md-creme-ink:              #1a1a1a;
 @md-creme-body:             #5a5040;
-@md-creme-border:           #e8e4d8;
-@md-creme-border-strong:    #d4cfbf;
 @md-creme-muted:            #8a8070;
+@md-creme-label:            #a09880;
+@md-creme-border:           #d4cfbf;
+@md-creme-border-subtle:    #e8e4d8;
+@md-creme-border-row:       #f0ede4;
 
-@md-carbono-page:           #1a1a1a;
-@md-carbono-panel:          #202020;
-@md-carbono-card:           #272727;
-@md-carbono-inset:          #303030;
-@md-carbono-ink:            #ffffff;
-@md-carbono-text:           #e8e4dc;
-@md-carbono-body:           #999999;
-@md-carbono-border:         #333333;
-@md-carbono-border-strong:  #404040;
+// Carbono (Dark Mode — exact MartFlow palette)
+@md-carbono-canvas:         #0d0d0d;
+@md-carbono-header:         #161616;
+@md-carbono-sidebar:        #1a1a1a;
+@md-carbono-panel-header:   #141414;
+@md-carbono-card:           #1e1e1e;
+@md-carbono-elevated:       #252525;
+@md-carbono-input:          #111111;
+@md-carbono-ink:            #fcf9e0;
+@md-carbono-body:           #d6d0be;
+@md-carbono-muted:          #a09880;
+@md-carbono-label:          #7a7464;
+@md-carbono-border:         #2a2a2a;
+@md-carbono-border-strong:  #3a3a3a;
+@md-carbono-border-row:     #242424;
 
-@md-success:                #178f45;
+// Semantic
+@md-success:                #16a34a;
 @md-success-text-creme:     #116b34;
-@md-success-text-carbono:   #4cc27a;
-@md-danger:                 #e5372a;
+@md-success-text-carbono:   #4ade80;
+@md-danger:                 #dc2626;
 @md-danger-text-creme:      #b91c1c;
-@md-danger-text-carbono:    #ff7a6e;
-@md-warning:                #b86e00;
-@md-warning-text-creme:     #8a5200;
-@md-warning-text-carbono:   #f0a830;
+@md-danger-text-carbono:    #f87171;
+@md-warning:                #d97706;
+@md-warning-text-creme:     #92400e;
+@md-warning-text-carbono:   #fbbf24;
+@md-info:                   #2563eb;
+@md-info-text-carbono:      #60a5fa;
 
 // -----------------------------------------------------------------
 // Elastic Core Variables — Creme (Light Mode)
@@ -55,51 +81,51 @@
 @color-font:                @md-creme-ink;
 @color-link:                @md-accent-text-creme;
 @color-link-hover:          @md-accent-deep;
-@color-border:              @md-creme-border-strong;
+@color-border:              @md-creme-border;
 @color-error:               @md-danger;
 @color-success:             @md-success;
 @color-warning:             @md-warning;
 
 @color-black-shade-text:    @md-creme-body;
-@color-black-shade-border:  @md-creme-border-strong;
-@color-black-shade-bg:      @md-creme-border;
+@color-black-shade-border:  @md-creme-border;
+@color-black-shade-bg:      @md-creme-border-subtle;
 
-// Layout surfaces (Creme)
-@color-layout-border:                   @md-creme-border-strong;
+// Layout surfaces (Creme — matching MartFlow mockup)
+@color-layout-border:                   @md-creme-border;
 @color-layout-header:                   @md-creme-ink;
-@color-layout-sidebar-background:       @md-creme-page;
+@color-layout-sidebar-background:       @md-creme-sidebar;
 @color-layout-list-background:          @md-creme-card;
-@color-layout-content-background:       @md-creme-card;
-@color-layout-header-background:        @md-creme-page;
-@color-layout-footer-background:        @md-creme-page;
+@color-layout-content-background:       @md-creme-canvas;
+@color-layout-header-background:        @md-creme-header;
+@color-layout-footer-background:        @md-creme-header;
 
-@color-layout-mobile-header-background: @md-creme-panel;
-@color-layout-mobile-footer-background: @md-creme-page;
+@color-layout-mobile-header-background: @md-creme-header;
+@color-layout-mobile-footer-background: @md-creme-header;
 
-// Task menu rail (Carbono rail across both themes)
-@color-taskmenu-background:                     @md-carbono-page;
-@color-taskmenu-button:                         #d6d2c7;
+// Task menu rail (Creme by default; Carbono via CSS custom properties in dark-mode)
+@color-taskmenu-background:                     @md-creme-header;
+@color-taskmenu-button:                         @md-creme-body;
 @color-taskmenu-button-selected:                #ffffff;
-@color-taskmenu-button-action:                  #ffffff;
+@color-taskmenu-button-action:                  @md-creme-body;
 
-@color-taskmenu-button-selected-background:     @md-carbono-card;
-@color-taskmenu-button-action-background:       @md-accent;
+@color-taskmenu-button-selected-background:     @md-accent;
+@color-taskmenu-button-action-background:       transparent;
 
-@color-taskmenu-button-hover:                   #ffffff;
+@color-taskmenu-button-hover:                   @md-creme-ink;
 @color-taskmenu-button-selected-hover:          #ffffff;
-@color-taskmenu-button-action-hover:            #ffffff;
+@color-taskmenu-button-action-hover:            @md-creme-ink;
 
-@color-taskmenu-button-background-hover:        @md-carbono-card;
-@color-taskmenu-button-action-background-hover: @md-accent-deep;
-@color-taskmenu-button-logout:                  @md-danger-text-carbono;
-@color-taskmenu-button-logout-hover:            #ffffff;
+@color-taskmenu-button-background-hover:        @md-creme-sidebar;
+@color-taskmenu-button-action-background-hover: @md-creme-sidebar;
+@color-taskmenu-button-logout:                  @md-danger-text-creme;
+@color-taskmenu-button-logout-hover:            @md-danger;
 
 // Toolbar & searchbar
-@color-toolbar-button:                  @md-creme-ink;
-@color-toolbar-button-background-hover: @md-creme-panel;
-@color-searchbar-background:            @md-creme-inset;
+@color-toolbar-button:                  @md-creme-body;
+@color-toolbar-button-background-hover: @md-creme-sidebar;
+@color-searchbar-background:            @md-creme-input;
 
-// Popover / dropdown hover (white on orange)
+// Popover / dropdown hover
 @color-menu-hover:                      #ffffff;
 @color-menu-hover-background:           @md-accent;
 
@@ -107,108 +133,108 @@
 @color-list:                            @md-creme-ink;
 @color-list-selected:                   @md-creme-ink;
 @color-list-selected-background:        @md-accent-soft-creme;
-@color-list-flagged:                    @md-accent-deep;
-@color-list-deleted:                    fadeout(@md-creme-body, 35%);
-@color-list-secondary:                  @md-creme-body;
+@color-list-flagged:                    @md-creme-ink;
+@color-list-deleted:                    fadeout(@md-creme-muted, 30%);
+@color-list-secondary:                  @md-creme-muted;
 @color-list-droptarget-background:      #f6ebd4;
 @color-list-focus-indicator:            @md-accent;
 
-@color-list-border:                     @md-creme-border;
-@color-list-badge:                      #ffffff;
-@color-list-badge-background:           @md-accent;
+@color-list-border:                     @md-creme-border-row;
+@color-list-badge:                      @md-creme-body;
+@color-list-badge-background:           @md-creme-panel-header;
 @color-list-recent:                     @md-accent-text-creme;
 @color-list-recent-badge:               #ffffff;
-@color-list-recent-badge-background:    @md-accent-deep;
+@color-list-recent-badge-background:    @md-accent;
 
-@color-list-pagenav:                    @md-creme-body;
-@color-list-icon:                       @md-creme-muted;
+@color-list-pagenav:                    @md-creme-muted;
+@color-list-icon:                       @md-creme-label;
 @color-list-unread-status:              @md-accent;
 
-@color-attachmentlist-border:           @md-creme-border-strong;
-@color-attachmentlist-background:       @md-creme-inset;
+@color-attachmentlist-border:           @md-creme-border;
+@color-attachmentlist-background:       @md-creme-surface-alt;
 
 // Drag layer
-@color-drag-layer:                      #ffffff;
-@color-drag-layer-background:           @md-carbono-page;
-@color-drag-layer-shadow:               rgba(26, 26, 26, 0.2);
+@color-drag-layer:                      @md-creme-ink;
+@color-drag-layer-background:           @md-creme-card;
+@color-drag-layer-shadow:               rgba(26, 26, 26, 0.16);
 
-// Alerts & Toast messages
+// Alerts & Toast messages (Creme Light card style — never stuck dark!)
 @color-message:                         @md-creme-ink;
-@color-message-border:                  @md-creme-border-strong;
-@color-message-background:              @md-creme-inset;
-@color-message-text:                    #ffffff;
+@color-message-border:                  @md-creme-border;
+@color-message-background:              @md-creme-card;
+@color-message-text:                    @md-creme-ink;
 @color-message-link:                    @md-accent-text-creme;
 @color-message-link-font-weight:        600;
-@color-message-information:             @md-carbono-page;
-@color-message-success:                 @md-success;
-@color-message-warning:                 @md-warning;
-@color-message-error:                   @md-danger;
-@color-message-loading:                 @md-carbono-card;
-@color-message-information-text:        #ffffff;
-@color-message-success-text:            #ffffff;
-@color-message-warning-text:            #ffffff;
-@color-message-error-text:              #ffffff;
-@color-message-loading-text:            #ffffff;
+@color-message-information:             @md-creme-card;
+@color-message-success:                 @md-creme-card;
+@color-message-warning:                 @md-creme-card;
+@color-message-error:                   @md-creme-card;
+@color-message-loading:                 @md-creme-card;
+@color-message-information-text:        @md-creme-ink;
+@color-message-success-text:            @md-creme-ink;
+@color-message-warning-text:            @md-creme-ink;
+@color-message-error-text:              @md-creme-ink;
+@color-message-loading-text:            @md-creme-ink;
 @color-message-error-box:               @md-danger-text-creme;
 @color-message-information-box:         @md-creme-ink;
 @color-message-success-box:             @md-success-text-creme;
 @color-message-warning-box:             @md-warning-text-creme;
-@color-message-error-box-background:        fadeout(@md-danger, 88%);
-@color-message-information-box-background:  @md-creme-inset;
-@color-message-success-box-background:      fadeout(@md-success, 88%);
-@color-message-warning-box-background:      fadeout(@md-warning, 88%);
+@color-message-error-box-background:        fadeout(@md-danger, 90%);
+@color-message-information-box-background:  @md-creme-surface-alt;
+@color-message-success-box-background:      fadeout(@md-success, 90%);
+@color-message-warning-box-background:      fadeout(@md-warning, 90%);
 
 // Popovers & dialogs
 @color-popover-shadow:                       rgba(26, 26, 26, 0.14);
-@color-popover-separator:                    @md-creme-body;
-@color-popover-separator-background:         @md-creme-page;
-@color-popover-mobile-header:                #ffffff;
-@color-popover-mobile-header-background:     @md-carbono-page;
-@color-popover-mobile-dropbutton-background: @md-creme-inset;
+@color-popover-separator:                    @md-creme-muted;
+@color-popover-separator-background:         @md-creme-surface-alt;
+@color-popover-mobile-header:                @md-creme-ink;
+@color-popover-mobile-header-background:     @md-creme-header;
+@color-popover-mobile-dropbutton-background: @md-creme-input;
 
-@color-dialog-overlay-background:            rgba(26, 26, 26, 0.55);
+@color-dialog-overlay-background:            rgba(26, 26, 26, 0.45);
 @color-dialog-header:                        @md-creme-ink;
-@color-dialog-header-border:                 @md-creme-border-strong;
+@color-dialog-header-border:                 @md-creme-border-subtle;
 
-@color-spinner-circle:                       @md-creme-panel;
+@color-spinner-circle:                       @md-creme-border;
 @color-spinner-item:                         @md-accent;
 
 // Forms & Buttons (Creme)
 @color-input:                                @md-creme-ink;
-@color-input-border:                         @md-creme-border-strong;
+@color-input-border:                         @md-creme-border;
 @color-input-border-focus:                   @md-accent;
-@color-input-border-focus-shadow:            rgba(244, 119, 33, 0.28);
+@color-input-border-focus-shadow:            rgba(245, 71, 31, 0.22);
 @color-input-border-invalid:                 @md-danger;
-@color-input-border-invalid-shadow:          rgba(229, 55, 42, 0.25);
-@color-input-addon-background:               @md-creme-inset;
-@color-recipient-input-border:               @md-creme-border-strong;
-@color-recipient-input-background:           @md-creme-inset;
-@color-input-placeholder:                    @md-creme-muted;
+@color-input-border-invalid-shadow:          rgba(220, 38, 38, 0.22);
+@color-input-addon-background:               @md-creme-input;
+@color-recipient-input-border:               @md-creme-border;
+@color-recipient-input-background:           @md-creme-input;
+@color-input-placeholder:                    @md-creme-label;
 
 @color-checkbox:                             @md-accent;
 @color-checkbox-checked:                     @md-accent;
 @color-checkbox-checked-disabled:            fadeout(@md-accent, 45%);
-@color-checkbox-focus:                       @md-accent-secondary;
+@color-checkbox-focus:                       @md-accent;
 @color-checkbox-focus-shadow:                @color-input-border-focus-shadow;
 
-@color-form-hint:                            @md-creme-body;
-@color-image-upload-background:              @md-creme-inset;
+@color-form-hint:                            @md-creme-muted;
+@color-image-upload-background:              @md-creme-input;
 
 @color-btn-primary:                          #ffffff;
 @color-btn-primary-background:               @md-accent;
-@color-btn-secondary:                        #ffffff;
-@color-btn-secondary-background:             @md-carbono-page;
+@color-btn-secondary:                        @md-creme-body;
+@color-btn-secondary-background:             @md-creme-sidebar;
 @color-btn-danger:                           #ffffff;
 @color-btn-danger-background:                @md-danger;
 
-// Quota widget (high contrast)
-@color-quota-background:                     @md-creme-panel;
-@color-quota-text:                           @md-creme-ink;
+// Quota widget
+@color-quota-background:                     @md-creme-panel-header;
+@color-quota-text:                           @md-creme-body;
 @color-quota-value:                          @md-accent;
 @color-quota-value-warning:                  @md-danger;
 
 // Mail preview & blockquotes
-@color-blockquote-background:                @md-creme-inset;
+@color-blockquote-background:                @md-creme-surface-alt;
 @color-blockquote-0:                         @md-accent-text-creme;
 @color-blockquote-1:                         @md-success-text-creme;
 @color-blockquote-2:                         @md-warning-text-creme;
@@ -216,18 +242,18 @@
 @color-blockquote-1-border:                  @md-success;
 @color-blockquote-2-border:                  @md-warning;
 
-@color-mail-signature:                       @md-creme-body;
+@color-mail-signature:                       @md-creme-muted;
 @color-mail-headers:                         @md-creme-body;
-@color-messagepart-border:                   @md-creme-border;
-@color-messagepart-background:               @md-creme-inset;
+@color-messagepart-border:                   @md-creme-border-subtle;
+@color-messagepart-background:               @md-creme-surface-alt;
 @color-spellcheck-link:                      @md-danger;
 
-@color-table-border:                         @md-creme-border-strong;
+@color-table-border:                         @md-creme-border;
 @color-table-selected:                       @md-creme-ink;
 @color-table-selected-background:            @md-accent-soft-creme;
 
 // Datepicker
-@color-datepicker-border:                    @md-creme-border-strong;
+@color-datepicker-border:                    @md-creme-border;
 @color-datepicker-font:                      @md-creme-ink;
 @color-datepicker-highlight:                 @md-accent-text-creme;
 @color-datepicker-highlight-background:      @md-accent-soft-creme;
@@ -241,58 +267,58 @@
 @color-image-tools-hover:                    @md-accent;
 
 // Scrollbars (Creme)
-@color-scrollbar-thumb:                      #bfbcb0;
-@color-scrollbar-track:                      @md-creme-page;
+@color-scrollbar-thumb:                      #c7c2b2;
+@color-scrollbar-track:                      transparent;
 
 // -----------------------------------------------------------------
-// Elastic Dark Mode Variables — Carbono (Dark Mode)
+// Elastic Dark Mode Variables — Carbono (#0d0d0d / #161616 / #fcf9e0)
 // -----------------------------------------------------------------
 @color-dark-main:                            @md-accent;
-@color-dark-background:                      @md-carbono-page;
-@color-dark-font:                            @md-carbono-text;
+@color-dark-background:                      @md-carbono-canvas;
+@color-dark-font:                            @md-carbono-ink;
 @color-dark-border:                          @md-carbono-border;
-@color-dark-hint:                            @md-carbono-body;
-@color-dark-information:                     @md-carbono-card;
+@color-dark-hint:                            @md-carbono-muted;
+@color-dark-information:                     @md-carbono-elevated;
 @color-dark-success:                         @md-success;
 @color-dark-warning:                         @md-warning;
 @color-dark-error:                           @md-danger;
 
-@color-dark-list-selected:                   #ffffff;
+@color-dark-list-selected:                   @md-carbono-ink;
 @color-dark-list-selected-background:        @md-accent-soft-carbono;
-@color-dark-list-badge:                      #ffffff;
-@color-dark-list-badge-background:           @md-accent;
-@color-dark-list-deleted:                    #6e6a64;
-@color-dark-list-droptarget-background:      #3a2e14;
-@color-dark-list-border:                     #2b2b2b;
+@color-dark-list-badge:                      @md-carbono-body;
+@color-dark-list-badge-background:           @md-carbono-elevated;
+@color-dark-list-deleted:                    #6b665a;
+@color-dark-list-droptarget-background:      #332510;
+@color-dark-list-border:                     @md-carbono-border-row;
 
-@color-dark-input:                           #ffffff;
-@color-dark-input-border:                    @md-carbono-border-strong;
-@color-dark-input-background:                @md-carbono-card;
-@color-dark-input-focus:                     #ffffff;
+@color-dark-input:                           @md-carbono-ink;
+@color-dark-input-border:                    @md-carbono-border;
+@color-dark-input-background:                @md-carbono-header;
+@color-dark-input-focus:                     @md-carbono-ink;
 @color-dark-input-border-focus:              @md-accent;
-@color-dark-input-background-focus:          @md-carbono-inset;
-@color-dark-input-addon-background:          @md-carbono-panel;
-@color-dark-input-addon-background-focus:    @md-carbono-inset;
+@color-dark-input-background-focus:          @md-carbono-input;
+@color-dark-input-addon-background:          @md-carbono-sidebar;
+@color-dark-input-addon-background-focus:    @md-carbono-elevated;
 @color-dark-checkbox:                        @md-carbono-border-strong;
 @color-dark-checkbox-checked:                @md-accent;
 
-@color-dark-btn:                             #ffffff;
+@color-dark-btn:                             @md-carbono-ink;
 @color-dark-btn-primary-background:          @md-accent;
-@color-dark-btn-secondary-background:        @md-carbono-border;
+@color-dark-btn-secondary-background:        @md-carbono-elevated;
 @color-dark-btn-danger-background:           @md-danger;
 
-@color-dark-dialog-overlay-background:       rgba(0, 0, 0, 0.72);
-@color-dark-popover-background:              @md-carbono-panel;
-@color-dark-popover-border:                  @md-carbono-border-strong;
+@color-dark-dialog-overlay-background:       rgba(0, 0, 0, 0.68);
+@color-dark-popover-background:              @md-carbono-card;
+@color-dark-popover-border:                  @md-carbono-border;
 
-@color-dark-message-information:             @md-carbono-card;
-@color-dark-message-success:                 @md-success;
-@color-dark-message-warning:                 @md-warning;
-@color-dark-message-error:                   @md-danger;
-@color-dark-message-loading:                 @md-carbono-card;
+@color-dark-message-information:             @md-carbono-elevated;
+@color-dark-message-success:                 @md-carbono-elevated;
+@color-dark-message-warning:                 @md-carbono-elevated;
+@color-dark-message-error:                   @md-carbono-elevated;
+@color-dark-message-loading:                 @md-carbono-elevated;
 
 @color-dark-scrollbar-thumb:                 @md-carbono-border-strong;
-@color-dark-scrollbar-track:                 @md-carbono-page;
+@color-dark-scrollbar-track:                 transparent;
 
 @color-dark-blockquote-0:                    @md-accent-text-carbono;
 @color-dark-blockquote-1:                    @md-success-text-carbono;
@@ -302,9 +328,9 @@
 @color-dark-blockquote-2-border:             @md-warning;
 
 @color-dark-code-keyword:                    #ff8b66;
-@color-dark-code-atom:                       #8ab4f8;
-@color-dark-code-number:                     #f0a830;
-@color-dark-code-operator:                   #e8e4dc;
-@color-dark-code-string:                     #4cc27a;
+@color-dark-code-atom:                       #60a5fa;
+@color-dark-code-number:                     #fbbf24;
+@color-dark-code-operator:                   #fcf9e0;
+@color-dark-code-string:                     #4ade80;
 @color-dark-code-string-2:                   #f47721;
-@color-dark-code-comment:                    #999999;
+@color-dark-code-comment:                    #a09880;
