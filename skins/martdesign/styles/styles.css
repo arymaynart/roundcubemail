@@ -7028,9 +7028,54 @@ html.dark-mode .input-group .recipient-input:focus-within {
 html.dark-mode .input-group:focus-within,
 .input-group:has(.recipient-input.focus),
 html.dark-mode .input-group:has(.recipient-input.focus) {
-  outline: 1.5px solid var(--mf-accent);
-  outline-offset: -1px;
-  box-shadow: 0 0 0 2px rgba(245, 71, 31, 0.2) !important;
+  box-shadow: 0 0 0 2px rgba(245, 71, 31, 0.22) !important;
+}
+.input-group:focus-within .form-control,
+html.dark-mode .input-group:focus-within .form-control,
+.input-group:has(.recipient-input.focus) .form-control,
+html.dark-mode .input-group:has(.recipient-input.focus) .form-control,
+.input-group:focus-within .custom-select,
+html.dark-mode .input-group:focus-within .custom-select,
+.input-group:has(.recipient-input.focus) .custom-select,
+html.dark-mode .input-group:has(.recipient-input.focus) .custom-select,
+.input-group:focus-within .recipient-input,
+html.dark-mode .input-group:focus-within .recipient-input,
+.input-group:has(.recipient-input.focus) .recipient-input,
+html.dark-mode .input-group:has(.recipient-input.focus) .recipient-input,
+.input-group:focus-within .input-group-text,
+html.dark-mode .input-group:focus-within .input-group-text,
+.input-group:has(.recipient-input.focus) .input-group-text,
+html.dark-mode .input-group:has(.recipient-input.focus) .input-group-text {
+  border-top-color: var(--mf-accent) !important;
+  border-bottom-color: var(--mf-accent) !important;
+}
+.input-group:focus-within > :first-child,
+html.dark-mode .input-group:focus-within > :first-child,
+.input-group:has(.recipient-input.focus) > :first-child,
+html.dark-mode .input-group:has(.recipient-input.focus) > :first-child,
+.input-group:focus-within > :first-child > .input-group-text,
+html.dark-mode .input-group:focus-within > :first-child > .input-group-text,
+.input-group:has(.recipient-input.focus) > :first-child > .input-group-text,
+html.dark-mode .input-group:has(.recipient-input.focus) > :first-child > .input-group-text,
+.input-group:focus-within > .recipient-input,
+html.dark-mode .input-group:focus-within > .recipient-input,
+.input-group:has(.recipient-input.focus) > .recipient-input,
+html.dark-mode .input-group:has(.recipient-input.focus) > .recipient-input,
+.input-group:focus-within > .rounded-left,
+html.dark-mode .input-group:focus-within > .rounded-left,
+.input-group:has(.recipient-input.focus) > .rounded-left,
+html.dark-mode .input-group:has(.recipient-input.focus) > .rounded-left {
+  border-left-color: var(--mf-accent) !important;
+}
+.input-group:focus-within > :last-child,
+html.dark-mode .input-group:focus-within > :last-child,
+.input-group:has(.recipient-input.focus) > :last-child,
+html.dark-mode .input-group:has(.recipient-input.focus) > :last-child,
+.input-group:focus-within > :last-child > .input-group-text,
+html.dark-mode .input-group:focus-within > :last-child > .input-group-text,
+.input-group:has(.recipient-input.focus) > :last-child > .input-group-text,
+html.dark-mode .input-group:has(.recipient-input.focus) > :last-child > .input-group-text {
+  border-right-color: var(--mf-accent) !important;
 }
 .input-group .input-group-text,
 html.dark-mode .input-group .input-group-text {
@@ -8383,12 +8428,12 @@ html.iframe.dark-mode body {
 html.iframe body::before {
   content: "";
   position: fixed;
-  top: -32px;
-  left: -110px;
-  width: min(620px, 76vw);
+  top: 0;
+  left: 0;
+  width: min(640px, 78vw);
   height: min(440px, 58vh);
-  background: url('../images/pontos-hex-creme.svg') left top / contain no-repeat;
-  opacity: 0.46;
+  background: url('../images/pontos-hex-creme.svg?v=25') left top / contain no-repeat;
+  opacity: 0.48;
   pointer-events: none;
   z-index: 0;
 }
@@ -8405,8 +8450,8 @@ html.iframe body::after {
   z-index: 0;
 }
 html.iframe.dark-mode body::before {
-  background-image: url('../images/pontos-hex-carbono.svg');
-  opacity: 0.56;
+  background-image: url('../images/pontos-hex-carbono.svg?v=25');
+  opacity: 0.58;
 }
 html.iframe.dark-mode body::after {
   background-image: url('../images/bg-symbol-carbono.svg');

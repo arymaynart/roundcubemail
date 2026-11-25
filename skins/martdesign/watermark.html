@@ -64,12 +64,12 @@ body {
 body::before {
   content: "";
   position: fixed;
-  top: -36px;
-  left: -120px;
+  top: 0;
+  left: 0;
   width: min(680px, 82vw);
   height: min(480px, 64vh);
-  background: url('images/pontos-hex-creme.svg') left top / contain no-repeat;
-  opacity: 0.56;
+  background: url('images/pontos-hex-creme.svg?v=25') left top / contain no-repeat;
+  opacity: 0.62;
   pointer-events: none;
   z-index: 0;
 }
@@ -88,8 +88,8 @@ body::after {
 }
 
 html.dark-mode body::before {
-  background-image: url('images/pontos-hex-carbono.svg');
-  opacity: 0.65;
+  background-image: url('images/pontos-hex-carbono.svg?v=25');
+  opacity: 0.72;
 }
 
 html.dark-mode body::after {
