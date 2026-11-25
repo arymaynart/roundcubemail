@@ -297,7 +297,7 @@ button.btn {
 
 // FAB icon on mobile
 .floating-action-buttons a.button {
-    display: flex !important;
+    display: flex;
     align-items: center;
     justify-content: center;
 
@@ -416,7 +416,6 @@ ul.treelist li div.treetoggle {
     }
 
     a {
-        display: inline-flex !important;
         align-items: center;
         justify-content: center;
         width: 28px;
@@ -427,9 +426,18 @@ ul.treelist li div.treetoggle {
             margin: 0 !important;
         }
 
+        &.options,
+        &.unread {
+            display: inline-flex;
+        }
+
         &.options:before            { .hi-mask(@hi-chevron-down, 15px); }
         &.reset:before              { .hi-mask(@hi-x-mark, 15px); }
         &.unread:before             { .hi-mask(@hi-envelope, 15px); }
+    }
+
+    &.active a.reset {
+        display: inline-flex;
     }
 
     &.open a.options:before         { .hi-mask(@hi-chevron-up, 15px); }
@@ -528,7 +536,7 @@ ul.treelist li div.treetoggle {
     }
 
     .header-links a {
-        display: inline-flex !important;
+        display: inline-flex;
         align-items: center;
         gap: 5px;
 

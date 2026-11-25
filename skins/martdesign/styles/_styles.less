@@ -91,8 +91,9 @@
     --mf-warning-bg:        rgba(217, 119, 6, 0.10);
     --mf-info:              #2563eb;
     --mf-info-bg:           rgba(37, 99, 235, 0.10);
-    --mf-badge-bg:          rgba(26, 26, 26, 0.08);
-    --mf-badge-text:        #5a5040;
+    --mf-folder-badge-bg:   #cfc9b8;
+    --mf-folder-badge-text: #1a1a1a;
+    --mf-editor-bg:         #faf9f5;
     --mf-btn-sec-bg:        #dedad0;
     --mf-btn-sec-hover:     #d4cfbf;
     --mf-btn-sec-border:    #d4cfbf;
@@ -142,8 +143,9 @@ html.dark-mode {
     --mf-warning-bg:        rgba(251, 191, 36, 0.14);
     --mf-info:              #60a5fa;
     --mf-info-bg:           rgba(96, 165, 250, 0.14);
-    --mf-badge-bg:          rgba(252, 249, 224, 0.10);
-    --mf-badge-text:        #a09880;
+    --mf-folder-badge-bg:   #2c2c2c;
+    --mf-folder-badge-text: #fcf9e0;
+    --mf-editor-bg:         #181818;
     --mf-btn-sec-bg:        #252525;
     --mf-btn-sec-hover:     #2f2f2f;
     --mf-btn-sec-border:    #333333;
@@ -646,7 +648,7 @@ html.dark-mode body.task-login {
     }
 
     #layout-menu:hover .md-rail-inner,
-    #layout-menu:focus-within .md-rail-inner {
+    #layout-menu:has(:focus-visible) .md-rail-inner {
         width: 224px;
         box-shadow: var(--mf-shadow-dropdown);
     }
@@ -718,12 +720,12 @@ html.dark-mode body.task-login {
     }
 
     #layout-menu:hover .md-rail-mark,
-    #layout-menu:focus-within .md-rail-mark {
+    #layout-menu:has(:focus-visible) .md-rail-mark {
         opacity: 0;
     }
 
     #layout-menu:hover .md-rail-wordmark,
-    #layout-menu:focus-within .md-rail-wordmark {
+    #layout-menu:has(:focus-visible) .md-rail-wordmark {
         opacity: 1;
     }
 
@@ -759,7 +761,7 @@ html.dark-mode body.task-login {
         .special-buttons a,
         .special-buttons a:not(:focus) {
             position: relative;
-            display: flex !important;
+            display: flex;
             align-items: center;
             justify-content: flex-start;
             gap: 12px;
@@ -821,7 +823,7 @@ html.dark-mode body.task-login {
     }
 
     #layout-menu:hover #taskmenu a span.inner,
-    #layout-menu:focus-within #taskmenu a span.inner {
+    #layout-menu:has(:focus-visible) #taskmenu a span.inner {
         opacity: 1;
     }
 }
@@ -994,15 +996,56 @@ html.dark-mode #layout-content {
     }
 }
 
+// Comfortable initial column widths on desktop (still resizable via Elastic column-resizer)
+@media screen and (min-width: (@screen-width-large + 1px)) {
+    #layout-sidebar {
+        flex: 0 0 264px;
+        min-width: 230px;
+        max-width: 380px;
+
+        &.sidebar-right {
+            flex: 0 0 310px;
+            min-width: 260px;
+            max-width: 420px;
+        }
+    }
+
+    #layout-list {
+        flex: 0 0 420px;
+        min-width: 330px;
+        max-width: 48%;
+    }
+
+    #layout-content {
+        flex: 1 1 auto;
+        min-width: 360px;
+    }
+}
+
 // -----------------------------------------------------------------
 // 8. Topbar Action Toolbars (Modern Pill-Ghost Horizontal Buttons)
+//    NEVER use `display: ... !important` here so Elastic's responsive
+//    breakpoints and .hidden / .hidden-big / .hidden-large work 100%!
 // -----------------------------------------------------------------
+#layout-list > .header,
+#layout-content > .header {
+    container-type: inline-size;
+}
+
+@media screen and (min-width: (@screen-width-large + 1px)) {
+    #layout-list > .header {
+        justify-content: space-between;
+    }
+}
+
 #layout-content > .header .menu.toolbar:not(.popupmenu),
 #layout-list > .header .menu.toolbar:not(.popupmenu) {
     display: flex;
     align-items: center;
-    gap: 4px;
+    gap: 3px;
     height: 100%;
+    padding: 0;
+    margin: 0;
 
     & > li {
         display: inline-flex;
@@ -1013,7 +1056,7 @@ html.dark-mode #layout-content {
     }
 
     a {
-        display: inline-flex !important;
+        display: inline-flex;
         align-items: center;
         justify-content: center;
         gap: 6px;
@@ -1021,7 +1064,7 @@ html.dark-mode #layout-content {
         height: 36px !important;
         min-width: 36px !important;
         max-width: none !important;
-        padding: 0 10px !important;
+        padding: 0 9px !important;
         line-height: 1 !important;
         border-radius: 9px !important;
         color: var(--mf-text-body) !important;
@@ -1061,7 +1104,7 @@ html.dark-mode #layout-content {
     }
 
     .dropbutton {
-        display: inline-flex !important;
+        display: inline-flex;
         align-items: center;
         border-radius: 9px;
         overflow: hidden;
@@ -1091,17 +1134,18 @@ html.dark-mode #layout-content {
     }
 }
 
-// Refresh & icon buttons in list/sidebar headers
+// Refresh & visible icon buttons in headers (WITHOUT overriding Elastic responsive display:none)
 #layout-list > .header a.toolbar-button,
 #layout-sidebar > .header a.button.icon,
-#layout-list > .header a.button.icon {
-    display: inline-flex !important;
+#layout-list > .header a.button.icon,
+#layout-content > .header a.button.icon {
+    display: inline-flex;
     align-items: center;
     justify-content: center;
     gap: 6px;
     height: 36px !important;
     min-width: 36px;
-    padding: 0 10px !important;
+    padding: 0 9px !important;
     border-radius: 9px !important;
     line-height: 1 !important;
 
@@ -1111,10 +1155,43 @@ html.dark-mode #layout-content {
     }
 }
 
-// Compact toolbar labels on medium desktop widths so buttons never clip
-@media screen and (max-width: 1280px) {
-    #layout-content > .header .menu.toolbar a span.inner,
-    #layout-list > .header a.toolbar-button span.inner {
+// Re-assert Elastic's exact responsive button hiding with higher specificity than header rules above
+@media screen and (min-width: (@screen-width-xs + 1px)) {
+    #layout > div > .header a.task-menu-button {
+        display: none !important;
+    }
+}
+
+@media screen and (min-width: (@screen-width-small + 1px)) {
+    #layout > div > .header a.toolbar-menu-button {
+        display: none !important;
+    }
+}
+
+@media screen and (max-width: @screen-width-small) {
+    #layout > div > .header a.toolbar-list-button {
+        display: none !important;
+    }
+}
+
+@media screen and (min-width: (@screen-width-large + 1px)) {
+    #layout > div > .header a.toolbar-list-button,
+    #layout > div > .header a.back-list-button,
+    #layout > div > .header a.back-sidebar-button {
+        display: none !important;
+    }
+}
+
+// Auto-compact toolbar button labels inside narrow resizable panes so buttons NEVER collide
+@container (max-width: 390px) {
+    #toolbar-list-menu a span.inner,
+    a.toolbar-button span.inner {
+        display: none !important;
+    }
+}
+
+@container (max-width: 720px) {
+    #toolbar-menu a span.inner {
         display: none !important;
     }
 }
@@ -1185,16 +1262,24 @@ html.dark-mode #layout-content {
     }
 }
 
-// Unread folder counter pills (subtle neutral when unselected, translucent white on orange pill!)
+// Unread folder counter pills — uniform, calibrated contrast across ALL states
+// (unselected unread/recent = solid neutral chip; selected = translucent white on orange pill)
 .folderlist li.mailbox {
-    &.unread > a {
+    &.unread > a,
+    &.recent > a {
         padding-right: 46px !important;
         font-weight: 600;
         color: var(--mf-text-primary) !important;
     }
 
+    & > a > .unreadcount,
     .unreadcount,
-    html.dark-mode & .unreadcount {
+    &.recent > a > .unreadcount,
+    &.unread > a > .unreadcount,
+    html.dark-mode & > a > .unreadcount,
+    html.dark-mode & .unreadcount,
+    html.dark-mode &.recent > a > .unreadcount,
+    html.dark-mode &.unread > a > .unreadcount {
         position: absolute;
         top: 50%;
         right: 10px;
@@ -1205,23 +1290,29 @@ html.dark-mode #layout-content {
         line-height: 20px;
         padding: 0 7px;
         border-radius: 999px !important;
-        background-color: var(--mf-badge-bg) !important;
-        color: var(--mf-badge-text) !important;
+        background: var(--mf-folder-badge-bg) !important;
+        color: var(--mf-folder-badge-text) !important;
         font-size: 0.72rem;
         font-weight: 700;
         font-variant-numeric: tabular-nums;
         text-align: center;
     }
 
-    &.selected > a > .unreadcount,
-    &.selected .unreadcount,
-    html.dark-mode &.selected .unreadcount {
-        background-color: rgba(255, 255, 255, 0.24) !important;
+    &.selected > a,
+    &.selected.unread > a,
+    &.selected.recent > a {
         color: #ffffff !important;
     }
 
-    &.recent:not(.selected) > a > .unreadcount {
-        background-color: var(--mf-accent) !important;
+    &.selected > a > .unreadcount,
+    &.selected.recent > a > .unreadcount,
+    &.selected.unread > a > .unreadcount,
+    &.selected .unreadcount,
+    html.dark-mode &.selected > a > .unreadcount,
+    html.dark-mode &.selected.recent > a > .unreadcount,
+    html.dark-mode &.selected.unread > a > .unreadcount,
+    html.dark-mode &.selected .unreadcount {
+        background: rgba(255, 255, 255, 0.24) !important;
         color: #ffffff !important;
     }
 }
@@ -1453,7 +1544,7 @@ html.dark-mode .listing-hover-menu {
     }
 
     a.button {
-        display: inline-flex !important;
+        display: inline-flex;
         align-items: center;
         justify-content: center;
         width: 28px !important;
@@ -1639,7 +1730,7 @@ html.dark-mode .message-partheaders {
     }
 }
 
-// Compose view polished layout
+// Compose view — unified MartFlow writing card (toolbar + editor seamlessly fused)
 #compose-content {
     background-color: var(--mf-canvas);
 
@@ -1660,11 +1751,137 @@ html.dark-mode .message-partheaders {
     }
 
     #composebodycontainer {
-        background-color: var(--mf-surface);
-        border: 1px solid var(--mf-border-subtle);
+        background-color: var(--mf-editor-bg);
+        border: 1px solid var(--mf-border);
         border-radius: var(--mf-radius-xl);
-        padding: 14px;
+        padding: 0;
+        overflow: hidden;
         box-shadow: var(--mf-shadow-sm);
+        transition: border-color 150ms ease, box-shadow 150ms ease;
+
+        &:focus-within,
+        &:has(.tox.focused) {
+            border-color: var(--mf-accent);
+            box-shadow: 0 0 0 2px rgba(245, 71, 31, 0.16);
+        }
+
+        // Plain-text mode fused with the same card background
+        textarea#composebody {
+            border: 0 !important;
+            border-radius: 0 !important;
+            box-shadow: none !important;
+            background-color: var(--mf-editor-bg) !important;
+            color: var(--mf-text-primary) !important;
+            padding: 46px 20px 20px !important;
+            min-height: 360px;
+
+            &:focus {
+                background-color: var(--mf-editor-bg) !important;
+                box-shadow: none !important;
+            }
+        }
+
+        .editor-toolbar {
+            left: 0;
+            top: 0;
+            right: 0;
+            border-radius: 0;
+            border-bottom: 1px solid var(--mf-border-subtle) !important;
+            background-color: var(--mf-editor-bg) !important;
+            padding: 4px 10px;
+
+            .mce-i-html {
+                color: var(--mf-text-body) !important;
+                border-radius: 8px;
+
+                &:hover,
+                &:focus {
+                    background-color: var(--mf-rail-hover) !important;
+                    color: var(--mf-text-primary) !important;
+                }
+            }
+        }
+    }
+}
+
+// TinyMCE blended cleanly into MartFlow cards (seamless inside #composebodycontainer; rounded-xl standalone in Identities/Responses)
+div.tox,
+html.dark-mode div.tox {
+    &.tox-tinymce {
+        border: 1px solid var(--mf-border) !important;
+        border-radius: var(--mf-radius-lg) !important;
+        background-color: var(--mf-editor-bg) !important;
+        overflow: hidden;
+    }
+
+    &.focused {
+        border-color: var(--mf-accent) !important;
+        box-shadow: 0 0 0 2px rgba(245, 71, 31, 0.16) !important;
+    }
+
+    #composebodycontainer &.tox-tinymce {
+        border: 0 !important;
+        border-radius: 0 !important;
+    }
+
+    #composebodycontainer &.focused {
+        border: 0 !important;
+        box-shadow: none !important;
+    }
+
+    .tox-editor-header,
+    .tox-toolbar,
+    .tox-toolbar__primary,
+    .tox-toolbar__overflow,
+    .tox-toolbar-overlord,
+    .tox-toolbar-overlord > div {
+        background: var(--mf-editor-bg) !important;
+        background-image: none !important;
+        border-color: var(--mf-border-subtle) !important;
+    }
+
+    .tox-toolbar-overlord {
+        border-bottom: 1px solid var(--mf-border-subtle) !important;
+        padding: 4px 8px;
+    }
+
+    .tox-toolbar__group:not(:last-of-type) {
+        border-right: 1px solid var(--mf-border-subtle) !important;
+    }
+
+    .tox-tbtn,
+    .tox-split-button {
+        border-radius: 7px !important;
+        color: var(--mf-text-body) !important;
+
+        svg {
+            fill: currentColor !important;
+        }
+
+        &:hover,
+        &:focus {
+            background-color: var(--mf-rail-hover) !important;
+            color: var(--mf-text-primary) !important;
+        }
+    }
+
+    .tox-tbtn--enabled,
+    .tox-tbtn--enabled:hover {
+        background-color: var(--mf-accent-soft) !important;
+        color: var(--mf-accent) !important;
+    }
+
+    .tox-edit-area,
+    .tox-edit-area__iframe {
+        background-color: var(--mf-editor-bg) !important;
+        border: 0 !important;
+    }
+
+    .tox-dialog {
+        border-radius: var(--mf-radius-xl) !important;
+        border: 1px solid var(--mf-border) !important;
+        background-color: var(--mf-surface) !important;
+        overflow: hidden;
     }
 }
 
@@ -1777,7 +1994,7 @@ html.dark-mode .ui-dialog {
         height: 34px !important;
         padding: 0 !important;
         border-radius: var(--mf-radius-sm) !important;
-        display: inline-flex !important;
+        display: inline-flex;
         align-items: center;
         justify-content: center;
         color: var(--mf-text-muted) !important;
@@ -1856,7 +2073,7 @@ html.dark-mode .ui-menu {
                 border-radius: var(--mf-radius-sm) !important;
                 padding: 7px 10px !important;
                 line-height: 1.4 !important;
-                display: flex !important;
+                display: flex;
                 align-items: center;
                 gap: 10px;
                 color: var(--mf-text-body) !important;
@@ -2062,4 +2279,27 @@ html.dark-mode .floating-action-buttons a.button {
         background-color: var(--mf-accent-hover) !important;
         color: #ffffff !important;
     }
+}
+
+// -----------------------------------------------------------------
+// 14. Ironclad Visibility Safeguards (Elastic responsive classes ALWAYS win)
+// -----------------------------------------------------------------
+#layout .hidden,
+#layout .d-none,
+.popover .hidden,
+.popover .d-none,
+html.layout-phone #layout .hidden-phone,
+html.layout-phone #layout .hidden-small,
+html.layout-small #layout .hidden-small,
+html.layout-small #layout .hidden-lbs,
+html.layout-normal #layout .hidden-lbs,
+html.layout-normal #layout .hidden-big,
+html.layout-large #layout .hidden-lbs,
+html.layout-large #layout .hidden-big,
+html.layout-large #layout .hidden-large,
+html.layout-large #layout > div > .header .menu.toolbar > li:has(> .hidden-large),
+html.layout-large #layout > div > .header .menu.toolbar > li:has(> .hidden-big),
+html.layout-normal #layout > div > .header .menu.toolbar > li:has(> .hidden-big),
+#layout > div > .header .menu.toolbar > li:has(> .hidden) {
+    display: none !important;
 }
