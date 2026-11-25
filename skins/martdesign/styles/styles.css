@@ -6979,6 +6979,11 @@ textarea.form-control {
 html.dark-mode .custom-select {
   padding-right: 2.25rem;
 }
+.input-group,
+html.dark-mode .input-group {
+  border-radius: var(--mf-radius-lg);
+  transition: box-shadow 150ms ease, outline-color 150ms ease;
+}
 .input-group .form-control,
 html.dark-mode .input-group .form-control,
 .input-group .custom-select,
@@ -7006,6 +7011,26 @@ html.dark-mode .input-group > :last-child,
 html.dark-mode .input-group > :last-child > .input-group-text {
   border-top-right-radius: var(--mf-radius-lg) !important;
   border-bottom-right-radius: var(--mf-radius-lg) !important;
+}
+.input-group .form-control:focus,
+html.dark-mode .input-group .form-control:focus,
+.input-group .custom-select:focus,
+html.dark-mode .input-group .custom-select:focus,
+.input-group .recipient-input.focus,
+html.dark-mode .input-group .recipient-input.focus,
+.input-group .recipient-input:focus-within,
+html.dark-mode .input-group .recipient-input:focus-within {
+  border-color: var(--mf-border) !important;
+  box-shadow: none !important;
+  outline: none !important;
+}
+.input-group:focus-within,
+html.dark-mode .input-group:focus-within,
+.input-group:has(.recipient-input.focus),
+html.dark-mode .input-group:has(.recipient-input.focus) {
+  outline: 1.5px solid var(--mf-accent);
+  outline-offset: -1px;
+  box-shadow: 0 0 0 2px rgba(245, 71, 31, 0.2) !important;
 }
 .input-group .input-group-text,
 html.dark-mode .input-group .input-group-text {
@@ -7102,6 +7127,13 @@ html.dark-mode body.task-login .md-login-hex-svg .l {
 html.dark-mode .task-login .md-login-hex-svg .d,
 html.dark-mode body.task-login .md-login-hex-svg .d {
   fill: var(--pattern-line);
+}
+.task-login .md-login-hex-svg .af,
+html.dark-mode .task-login .md-login-hex-svg .af,
+html.dark-mode body.task-login .md-login-hex-svg .af {
+  fill: var(--accent);
+  stroke: var(--page);
+  stroke-width: 2;
 }
 .task-login .md-login-hex-svg .a,
 html.dark-mode .task-login .md-login-hex-svg .a,
@@ -8351,8 +8383,8 @@ html.iframe.dark-mode body {
 html.iframe body::before {
   content: "";
   position: fixed;
-  top: 0;
-  left: 0;
+  top: -32px;
+  left: -110px;
   width: min(620px, 76vw);
   height: min(440px, 58vh);
   background: url('../images/pontos-hex-creme.svg') left top / contain no-repeat;

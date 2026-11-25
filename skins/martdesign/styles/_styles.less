@@ -347,6 +347,9 @@ html.dark-mode .custom-select {
 
 .input-group,
 html.dark-mode .input-group {
+    border-radius: var(--mf-radius-lg);
+    transition: box-shadow 150ms ease, outline-color 150ms ease;
+
     .form-control,
     .custom-select,
     .recipient-input,
@@ -366,6 +369,23 @@ html.dark-mode .input-group {
     & > :last-child > .input-group-text {
         border-top-right-radius: var(--mf-radius-lg) !important;
         border-bottom-right-radius: var(--mf-radius-lg) !important;
+    }
+
+    // Unified single-capsule focus ring around the ENTIRE input-group (input + icon addons)
+    .form-control:focus,
+    .custom-select:focus,
+    .recipient-input.focus,
+    .recipient-input:focus-within {
+        border-color: var(--mf-border) !important;
+        box-shadow: none !important;
+        outline: none !important;
+    }
+
+    &:focus-within,
+    &:has(.recipient-input.focus) {
+        outline: 1.5px solid var(--mf-accent);
+        outline-offset: -1px;
+        box-shadow: 0 0 0 2px rgba(245, 71, 31, 0.20) !important;
     }
 
     .input-group-text {
@@ -468,6 +488,12 @@ html.dark-mode body.task-login {
 
         .d {
             fill: var(--pattern-line);
+        }
+
+        .af {
+            fill: var(--accent);
+            stroke: var(--page);
+            stroke-width: 2;
         }
 
         .a {
@@ -1671,8 +1697,8 @@ html.iframe.dark-mode body {
 html.iframe body::before {
     content: "";
     position: fixed;
-    top: 0;
-    left: 0;
+    top: -32px;
+    left: -110px;
     width: min(620px, 76vw);
     height: min(440px, 58vh);
     background: url('../images/pontos-hex-creme.svg') left top / contain no-repeat;
