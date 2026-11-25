@@ -1779,12 +1779,78 @@ html.iframe #layout-content {
     }
 }
 
+.message-htmlpart,
 html.dark-mode .message-htmlpart {
-    background-color: #ffffff;
-    color: #1a1a1a;
-    border-radius: var(--mf-radius-lg);
-    padding: 16px !important;
-    margin-top: 8px;
+    background-color: transparent !important;
+    color: var(--mf-text-primary) !important;
+    border-radius: 0;
+    padding: 0.25rem 0 0 !important;
+    margin-top: 0;
+}
+
+html.dark-mode .message-htmlpart {
+    a {
+        color: var(--mf-accent-text);
+    }
+
+    // Lift dark-ink inline text (e.g. signatures/Outlook) on transparent dark card
+    :not([bgcolor]):not([style*="background"]) {
+        &[style*="color: #1a1a1a" i],
+        &[style*="color:#1a1a1a" i],
+        &[style*="color: rgb(26, 26, 26)" i],
+        &[style*="color: #000" i],
+        &[style*="color:#000" i],
+        &[style*="color: rgb(0, 0, 0)" i],
+        &[style*="color: #111" i],
+        &[style*="color:#111" i],
+        &[style*="color: #222" i],
+        &[style*="color:#222" i],
+        &[style*="color: #333" i],
+        &[style*="color:#333" i],
+        &[style*="color: black" i],
+        &[style*="color:black" i] {
+            color: var(--mf-text-primary) !important;
+        }
+
+        &[style*="color: #5a5040" i],
+        &[style*="color:#5a5040" i],
+        &[style*="color: rgb(90, 80, 64)" i] {
+            color: var(--mf-text-body) !important;
+        }
+    }
+
+    // Preserve dark ink inside newsletters that explicitly declare their own white surface
+    [bgcolor="#ffffff" i],
+    [bgcolor="#fff" i],
+    [bgcolor="white" i],
+    [style*="background-color: #fff" i],
+    [style*="background-color:#fff" i],
+    [style*="background-color: white" i],
+    [style*="background-color: rgb(255, 255, 255)" i],
+    [style*="background: #fff" i],
+    [style*="background:#fff" i],
+    [style*="background: white" i] {
+        color: #1a1a1a;
+
+        [style*="color: #1a1a1a" i],
+        [style*="color:#1a1a1a" i],
+        [style*="color: rgb(26, 26, 26)" i],
+        [style*="color: #000" i],
+        [style*="color:#000" i],
+        [style*="color: rgb(0, 0, 0)" i],
+        [style*="color: #111" i],
+        [style*="color: #222" i],
+        [style*="color: #333" i],
+        [style*="color: black" i] {
+            color: #1a1a1a !important;
+        }
+    }
+
+    blockquote {
+        border-left-color: var(--mf-accent);
+        background-color: var(--mf-surface-alt);
+        color: var(--mf-text-body);
+    }
 }
 
 .message-partheaders,

@@ -8445,12 +8445,156 @@ html.iframe #layout-content {
   border-radius: var(--mf-radius-lg) !important;
   padding: 6px 10px;
 }
+.message-htmlpart,
 html.dark-mode .message-htmlpart {
-  background-color: #ffffff;
+  background-color: transparent !important;
+  color: var(--mf-text-primary) !important;
+  border-radius: 0;
+  padding: 0.25rem 0 0 !important;
+  margin-top: 0;
+}
+html.dark-mode .message-htmlpart a {
+  color: var(--mf-accent-text);
+}
+html.dark-mode .message-htmlpart :not([bgcolor]):not([style*="background"])[style*="color: #1a1a1a" i],
+html.dark-mode .message-htmlpart :not([bgcolor]):not([style*="background"])[style*="color:#1a1a1a" i],
+html.dark-mode .message-htmlpart :not([bgcolor]):not([style*="background"])[style*="color: rgb(26, 26, 26)" i],
+html.dark-mode .message-htmlpart :not([bgcolor]):not([style*="background"])[style*="color: #000" i],
+html.dark-mode .message-htmlpart :not([bgcolor]):not([style*="background"])[style*="color:#000" i],
+html.dark-mode .message-htmlpart :not([bgcolor]):not([style*="background"])[style*="color: rgb(0, 0, 0)" i],
+html.dark-mode .message-htmlpart :not([bgcolor]):not([style*="background"])[style*="color: #111" i],
+html.dark-mode .message-htmlpart :not([bgcolor]):not([style*="background"])[style*="color:#111" i],
+html.dark-mode .message-htmlpart :not([bgcolor]):not([style*="background"])[style*="color: #222" i],
+html.dark-mode .message-htmlpart :not([bgcolor]):not([style*="background"])[style*="color:#222" i],
+html.dark-mode .message-htmlpart :not([bgcolor]):not([style*="background"])[style*="color: #333" i],
+html.dark-mode .message-htmlpart :not([bgcolor]):not([style*="background"])[style*="color:#333" i],
+html.dark-mode .message-htmlpart :not([bgcolor]):not([style*="background"])[style*="color: black" i],
+html.dark-mode .message-htmlpart :not([bgcolor]):not([style*="background"])[style*="color:black" i] {
+  color: var(--mf-text-primary) !important;
+}
+html.dark-mode .message-htmlpart :not([bgcolor]):not([style*="background"])[style*="color: #5a5040" i],
+html.dark-mode .message-htmlpart :not([bgcolor]):not([style*="background"])[style*="color:#5a5040" i],
+html.dark-mode .message-htmlpart :not([bgcolor]):not([style*="background"])[style*="color: rgb(90, 80, 64)" i] {
+  color: var(--mf-text-body) !important;
+}
+html.dark-mode .message-htmlpart [bgcolor="#ffffff" i],
+html.dark-mode .message-htmlpart [bgcolor="#fff" i],
+html.dark-mode .message-htmlpart [bgcolor="white" i],
+html.dark-mode .message-htmlpart [style*="background-color: #fff" i],
+html.dark-mode .message-htmlpart [style*="background-color:#fff" i],
+html.dark-mode .message-htmlpart [style*="background-color: white" i],
+html.dark-mode .message-htmlpart [style*="background-color: rgb(255, 255, 255)" i],
+html.dark-mode .message-htmlpart [style*="background: #fff" i],
+html.dark-mode .message-htmlpart [style*="background:#fff" i],
+html.dark-mode .message-htmlpart [style*="background: white" i] {
   color: #1a1a1a;
-  border-radius: var(--mf-radius-lg);
-  padding: 16px !important;
-  margin-top: 8px;
+}
+html.dark-mode .message-htmlpart [bgcolor="#ffffff" i] [style*="color: #1a1a1a" i],
+html.dark-mode .message-htmlpart [bgcolor="#fff" i] [style*="color: #1a1a1a" i],
+html.dark-mode .message-htmlpart [bgcolor="white" i] [style*="color: #1a1a1a" i],
+html.dark-mode .message-htmlpart [style*="background-color: #fff" i] [style*="color: #1a1a1a" i],
+html.dark-mode .message-htmlpart [style*="background-color:#fff" i] [style*="color: #1a1a1a" i],
+html.dark-mode .message-htmlpart [style*="background-color: white" i] [style*="color: #1a1a1a" i],
+html.dark-mode .message-htmlpart [style*="background-color: rgb(255, 255, 255)" i] [style*="color: #1a1a1a" i],
+html.dark-mode .message-htmlpart [style*="background: #fff" i] [style*="color: #1a1a1a" i],
+html.dark-mode .message-htmlpart [style*="background:#fff" i] [style*="color: #1a1a1a" i],
+html.dark-mode .message-htmlpart [style*="background: white" i] [style*="color: #1a1a1a" i],
+html.dark-mode .message-htmlpart [bgcolor="#ffffff" i] [style*="color:#1a1a1a" i],
+html.dark-mode .message-htmlpart [bgcolor="#fff" i] [style*="color:#1a1a1a" i],
+html.dark-mode .message-htmlpart [bgcolor="white" i] [style*="color:#1a1a1a" i],
+html.dark-mode .message-htmlpart [style*="background-color: #fff" i] [style*="color:#1a1a1a" i],
+html.dark-mode .message-htmlpart [style*="background-color:#fff" i] [style*="color:#1a1a1a" i],
+html.dark-mode .message-htmlpart [style*="background-color: white" i] [style*="color:#1a1a1a" i],
+html.dark-mode .message-htmlpart [style*="background-color: rgb(255, 255, 255)" i] [style*="color:#1a1a1a" i],
+html.dark-mode .message-htmlpart [style*="background: #fff" i] [style*="color:#1a1a1a" i],
+html.dark-mode .message-htmlpart [style*="background:#fff" i] [style*="color:#1a1a1a" i],
+html.dark-mode .message-htmlpart [style*="background: white" i] [style*="color:#1a1a1a" i],
+html.dark-mode .message-htmlpart [bgcolor="#ffffff" i] [style*="color: rgb(26, 26, 26)" i],
+html.dark-mode .message-htmlpart [bgcolor="#fff" i] [style*="color: rgb(26, 26, 26)" i],
+html.dark-mode .message-htmlpart [bgcolor="white" i] [style*="color: rgb(26, 26, 26)" i],
+html.dark-mode .message-htmlpart [style*="background-color: #fff" i] [style*="color: rgb(26, 26, 26)" i],
+html.dark-mode .message-htmlpart [style*="background-color:#fff" i] [style*="color: rgb(26, 26, 26)" i],
+html.dark-mode .message-htmlpart [style*="background-color: white" i] [style*="color: rgb(26, 26, 26)" i],
+html.dark-mode .message-htmlpart [style*="background-color: rgb(255, 255, 255)" i] [style*="color: rgb(26, 26, 26)" i],
+html.dark-mode .message-htmlpart [style*="background: #fff" i] [style*="color: rgb(26, 26, 26)" i],
+html.dark-mode .message-htmlpart [style*="background:#fff" i] [style*="color: rgb(26, 26, 26)" i],
+html.dark-mode .message-htmlpart [style*="background: white" i] [style*="color: rgb(26, 26, 26)" i],
+html.dark-mode .message-htmlpart [bgcolor="#ffffff" i] [style*="color: #000" i],
+html.dark-mode .message-htmlpart [bgcolor="#fff" i] [style*="color: #000" i],
+html.dark-mode .message-htmlpart [bgcolor="white" i] [style*="color: #000" i],
+html.dark-mode .message-htmlpart [style*="background-color: #fff" i] [style*="color: #000" i],
+html.dark-mode .message-htmlpart [style*="background-color:#fff" i] [style*="color: #000" i],
+html.dark-mode .message-htmlpart [style*="background-color: white" i] [style*="color: #000" i],
+html.dark-mode .message-htmlpart [style*="background-color: rgb(255, 255, 255)" i] [style*="color: #000" i],
+html.dark-mode .message-htmlpart [style*="background: #fff" i] [style*="color: #000" i],
+html.dark-mode .message-htmlpart [style*="background:#fff" i] [style*="color: #000" i],
+html.dark-mode .message-htmlpart [style*="background: white" i] [style*="color: #000" i],
+html.dark-mode .message-htmlpart [bgcolor="#ffffff" i] [style*="color:#000" i],
+html.dark-mode .message-htmlpart [bgcolor="#fff" i] [style*="color:#000" i],
+html.dark-mode .message-htmlpart [bgcolor="white" i] [style*="color:#000" i],
+html.dark-mode .message-htmlpart [style*="background-color: #fff" i] [style*="color:#000" i],
+html.dark-mode .message-htmlpart [style*="background-color:#fff" i] [style*="color:#000" i],
+html.dark-mode .message-htmlpart [style*="background-color: white" i] [style*="color:#000" i],
+html.dark-mode .message-htmlpart [style*="background-color: rgb(255, 255, 255)" i] [style*="color:#000" i],
+html.dark-mode .message-htmlpart [style*="background: #fff" i] [style*="color:#000" i],
+html.dark-mode .message-htmlpart [style*="background:#fff" i] [style*="color:#000" i],
+html.dark-mode .message-htmlpart [style*="background: white" i] [style*="color:#000" i],
+html.dark-mode .message-htmlpart [bgcolor="#ffffff" i] [style*="color: rgb(0, 0, 0)" i],
+html.dark-mode .message-htmlpart [bgcolor="#fff" i] [style*="color: rgb(0, 0, 0)" i],
+html.dark-mode .message-htmlpart [bgcolor="white" i] [style*="color: rgb(0, 0, 0)" i],
+html.dark-mode .message-htmlpart [style*="background-color: #fff" i] [style*="color: rgb(0, 0, 0)" i],
+html.dark-mode .message-htmlpart [style*="background-color:#fff" i] [style*="color: rgb(0, 0, 0)" i],
+html.dark-mode .message-htmlpart [style*="background-color: white" i] [style*="color: rgb(0, 0, 0)" i],
+html.dark-mode .message-htmlpart [style*="background-color: rgb(255, 255, 255)" i] [style*="color: rgb(0, 0, 0)" i],
+html.dark-mode .message-htmlpart [style*="background: #fff" i] [style*="color: rgb(0, 0, 0)" i],
+html.dark-mode .message-htmlpart [style*="background:#fff" i] [style*="color: rgb(0, 0, 0)" i],
+html.dark-mode .message-htmlpart [style*="background: white" i] [style*="color: rgb(0, 0, 0)" i],
+html.dark-mode .message-htmlpart [bgcolor="#ffffff" i] [style*="color: #111" i],
+html.dark-mode .message-htmlpart [bgcolor="#fff" i] [style*="color: #111" i],
+html.dark-mode .message-htmlpart [bgcolor="white" i] [style*="color: #111" i],
+html.dark-mode .message-htmlpart [style*="background-color: #fff" i] [style*="color: #111" i],
+html.dark-mode .message-htmlpart [style*="background-color:#fff" i] [style*="color: #111" i],
+html.dark-mode .message-htmlpart [style*="background-color: white" i] [style*="color: #111" i],
+html.dark-mode .message-htmlpart [style*="background-color: rgb(255, 255, 255)" i] [style*="color: #111" i],
+html.dark-mode .message-htmlpart [style*="background: #fff" i] [style*="color: #111" i],
+html.dark-mode .message-htmlpart [style*="background:#fff" i] [style*="color: #111" i],
+html.dark-mode .message-htmlpart [style*="background: white" i] [style*="color: #111" i],
+html.dark-mode .message-htmlpart [bgcolor="#ffffff" i] [style*="color: #222" i],
+html.dark-mode .message-htmlpart [bgcolor="#fff" i] [style*="color: #222" i],
+html.dark-mode .message-htmlpart [bgcolor="white" i] [style*="color: #222" i],
+html.dark-mode .message-htmlpart [style*="background-color: #fff" i] [style*="color: #222" i],
+html.dark-mode .message-htmlpart [style*="background-color:#fff" i] [style*="color: #222" i],
+html.dark-mode .message-htmlpart [style*="background-color: white" i] [style*="color: #222" i],
+html.dark-mode .message-htmlpart [style*="background-color: rgb(255, 255, 255)" i] [style*="color: #222" i],
+html.dark-mode .message-htmlpart [style*="background: #fff" i] [style*="color: #222" i],
+html.dark-mode .message-htmlpart [style*="background:#fff" i] [style*="color: #222" i],
+html.dark-mode .message-htmlpart [style*="background: white" i] [style*="color: #222" i],
+html.dark-mode .message-htmlpart [bgcolor="#ffffff" i] [style*="color: #333" i],
+html.dark-mode .message-htmlpart [bgcolor="#fff" i] [style*="color: #333" i],
+html.dark-mode .message-htmlpart [bgcolor="white" i] [style*="color: #333" i],
+html.dark-mode .message-htmlpart [style*="background-color: #fff" i] [style*="color: #333" i],
+html.dark-mode .message-htmlpart [style*="background-color:#fff" i] [style*="color: #333" i],
+html.dark-mode .message-htmlpart [style*="background-color: white" i] [style*="color: #333" i],
+html.dark-mode .message-htmlpart [style*="background-color: rgb(255, 255, 255)" i] [style*="color: #333" i],
+html.dark-mode .message-htmlpart [style*="background: #fff" i] [style*="color: #333" i],
+html.dark-mode .message-htmlpart [style*="background:#fff" i] [style*="color: #333" i],
+html.dark-mode .message-htmlpart [style*="background: white" i] [style*="color: #333" i],
+html.dark-mode .message-htmlpart [bgcolor="#ffffff" i] [style*="color: black" i],
+html.dark-mode .message-htmlpart [bgcolor="#fff" i] [style*="color: black" i],
+html.dark-mode .message-htmlpart [bgcolor="white" i] [style*="color: black" i],
+html.dark-mode .message-htmlpart [style*="background-color: #fff" i] [style*="color: black" i],
+html.dark-mode .message-htmlpart [style*="background-color:#fff" i] [style*="color: black" i],
+html.dark-mode .message-htmlpart [style*="background-color: white" i] [style*="color: black" i],
+html.dark-mode .message-htmlpart [style*="background-color: rgb(255, 255, 255)" i] [style*="color: black" i],
+html.dark-mode .message-htmlpart [style*="background: #fff" i] [style*="color: black" i],
+html.dark-mode .message-htmlpart [style*="background:#fff" i] [style*="color: black" i],
+html.dark-mode .message-htmlpart [style*="background: white" i] [style*="color: black" i] {
+  color: #1a1a1a !important;
+}
+html.dark-mode .message-htmlpart blockquote {
+  border-left-color: var(--mf-accent);
+  background-color: var(--mf-surface-alt);
+  color: var(--mf-text-body);
 }
 .message-partheaders,
 html.dark-mode .message-partheaders {
