@@ -57,6 +57,11 @@
 // 2. MartFlow Runtime Theme Tokens (:root = Creme, html.dark-mode = Carbono)
 // -----------------------------------------------------------------
 :root {
+    // Design System canonical tokens (synced with martdesign-design-system/references/tokens.css)
+    --page:                 #eceae0;
+    --pattern-line:         #cbc6b5;
+    --accent:               #f5471f;
+
     --mf-canvas:            #eceae0;
     --mf-header:            #e8e4d8;
     --mf-sidebar:           #dedad0;
@@ -109,6 +114,10 @@
 }
 
 html.dark-mode {
+    --page:                 #0d0d0d;
+    --pattern-line:         #404040;
+    --accent:               #f5471f;
+
     --mf-canvas:            #0d0d0d;
     --mf-header:            #161616;
     --mf-sidebar:           #1a1a1a;
@@ -344,7 +353,9 @@ html.dark-mode .custom-select {
     }
 
     & > :first-child,
-    & > :first-child > .input-group-text {
+    & > :first-child > .input-group-text,
+    & > .recipient-input,
+    & > .rounded-left {
         border-top-left-radius: var(--mf-radius-lg) !important;
         border-bottom-left-radius: var(--mf-radius-lg) !important;
     }
@@ -423,33 +434,99 @@ html.dark-mode body.task-login {
         min-height: 100%;
         width: 100%;
         padding: 2rem 1.25rem;
-        background-color: var(--mf-canvas) !important;
+        background-color: var(--page) !important;
+        overflow: hidden;
         overflow-y: auto;
         text-align: left;
     }
 
-    .martdesign-login-dots {
+    // Inline animated hexagonal patterns (rede-hex + pontos-hex), themed via tokens.css vars
+    .md-login-hex-stage {
         position: fixed;
-        top: 0;
-        left: 0;
-        width: min(440px, 55vw);
-        height: min(380px, 50vh);
-        background: url('../images/pontos-hex-creme.svg') left top / contain no-repeat;
-        opacity: 0.7;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
         pointer-events: none;
         z-index: 0;
     }
 
-    .martdesign-login-bg {
-        position: fixed;
-        right: 0;
-        bottom: 0;
-        width: min(520px, 60vw);
-        height: min(520px, 60vh);
-        background: url('../images/bg-symbol-creme.svg') right bottom / contain no-repeat;
-        opacity: 0.72;
-        pointer-events: none;
-        z-index: 0;
+    .md-login-hex-svg {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        display: block;
+
+        .l {
+            fill: none;
+            stroke: var(--pattern-line);
+            stroke-width: 1;
+            vector-effect: non-scaling-stroke;
+        }
+
+        .d {
+            fill: var(--pattern-line);
+        }
+
+        .a {
+            fill: none;
+            stroke: var(--accent);
+            stroke-width: 2;
+            stroke-linejoin: round;
+            stroke-linecap: round;
+            vector-effect: non-scaling-stroke;
+            stroke-dasharray: 100;
+            stroke-dashoffset: 100;
+            animation: md-hex-trace 9.6s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+        }
+
+        .af {
+            fill: var(--accent);
+            stroke: var(--page);
+            stroke-width: 2;
+            transform-box: fill-box;
+            transform-origin: center;
+        }
+
+        .af-start {
+            animation: md-hex-node-start 9.6s ease-out infinite;
+        }
+
+        .af-end {
+            animation: md-hex-node-end 9.6s ease-out infinite;
+        }
+
+        .af-dot {
+            animation: md-hex-dot 9.6s ease-in-out infinite both;
+        }
+
+        .af-p1 { animation-delay: 0s; }
+        .af-p2 { animation-delay: 0.22s; }
+        .af-p3 { animation-delay: 0.44s; }
+        .af-p4 { animation-delay: 0.66s; }
+        .af-p5 { animation-delay: 0.88s; }
+        .af-p6 { animation-delay: 1.10s; }
+        .af-pc { animation-delay: 1.35s; }
+    }
+
+    // Frame the centered login card harmoniously: hex network on right, hex dots on left
+    .md-hex-rede {
+        opacity: 0.92;
+        transform: translateX(10%);
+
+        @media screen and (max-width: @screen-width-small) {
+            transform: none;
+        }
+    }
+
+    .md-hex-pontos {
+        opacity: 0.88;
+        transform: translateX(-10%) scaleX(-1);
+
+        @media screen and (max-width: @screen-width-small) {
+            transform: scaleX(-1);
+        }
     }
 
     .md-login-theme-btn {
@@ -599,16 +676,109 @@ html.dark-mode body.task-login {
     }
 }
 
-html.dark-mode .task-login,
-html.dark-mode body.task-login {
-    .martdesign-login-dots {
-        background-image: url('../images/pontos-hex-carbono.svg');
-        opacity: 0.85;
+@keyframes md-hex-trace {
+    0% {
+        stroke-dashoffset: 100;
+        opacity: 0;
     }
+    1.5% {
+        stroke-dashoffset: 100;
+        opacity: 1;
+    }
+    17.1% {
+        stroke-dashoffset: 0;
+        opacity: 1;
+    }
+    62% {
+        stroke-dashoffset: 0;
+        opacity: 1;
+    }
+    76% {
+        stroke-dashoffset: 0;
+        opacity: 0;
+    }
+    100% {
+        stroke-dashoffset: 100;
+        opacity: 0;
+    }
+}
 
-    .martdesign-login-bg {
-        background-image: url('../images/bg-symbol-carbono.svg');
-        opacity: 0.85;
+@keyframes md-hex-node-start {
+    0% {
+        opacity: 0;
+        transform: scale(0.5);
+    }
+    4% {
+        opacity: 1;
+        transform: scale(1);
+    }
+    62% {
+        opacity: 1;
+        transform: scale(1);
+    }
+    76% {
+        opacity: 0;
+        transform: scale(0.75);
+    }
+    100% {
+        opacity: 0;
+        transform: scale(0.5);
+    }
+}
+
+@keyframes md-hex-node-end {
+    0%, 15.5% {
+        opacity: 0;
+        transform: scale(0.5);
+    }
+    20.5% {
+        opacity: 1;
+        transform: scale(1);
+    }
+    62% {
+        opacity: 1;
+        transform: scale(1);
+    }
+    76% {
+        opacity: 0;
+        transform: scale(0.75);
+    }
+    100% {
+        opacity: 0;
+        transform: scale(0.5);
+    }
+}
+
+@keyframes md-hex-dot {
+    0%, 4% {
+        opacity: 0;
+        transform: scale(0.55);
+    }
+    14% {
+        opacity: 0.92;
+        transform: scale(1);
+    }
+    58% {
+        opacity: 0.92;
+        transform: scale(1);
+    }
+    72% {
+        opacity: 0;
+        transform: scale(0.7);
+    }
+    100% {
+        opacity: 0;
+        transform: scale(0.55);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .task-login .md-login-hex-svg .a,
+    .task-login .md-login-hex-svg .af {
+        animation: none !important;
+        stroke-dashoffset: 0 !important;
+        opacity: 1 !important;
+        transform: none !important;
     }
 }
 
@@ -1600,17 +1770,35 @@ html.iframe body::before {
     position: fixed;
     top: 0;
     left: 0;
-    width: min(320px, 42vw);
-    height: min(280px, 38vh);
+    width: min(620px, 76vw);
+    height: min(440px, 58vh);
     background: url('../images/pontos-hex-creme.svg') left top / contain no-repeat;
-    opacity: 0.32;
+    opacity: 0.46;
+    pointer-events: none;
+    z-index: 0;
+}
+
+html.iframe body::after {
+    content: "";
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    width: min(580px, 72vw);
+    height: min(580px, 72vh);
+    background: url('../images/bg-symbol-creme.svg') right bottom / contain no-repeat;
+    opacity: 0.42;
     pointer-events: none;
     z-index: 0;
 }
 
 html.iframe.dark-mode body::before {
     background-image: url('../images/pontos-hex-carbono.svg');
-    opacity: 0.42;
+    opacity: 0.56;
+}
+
+html.iframe.dark-mode body::after {
+    background-image: url('../images/bg-symbol-carbono.svg');
+    opacity: 0.52;
 }
 
 html.iframe #layout-content {
@@ -1757,13 +1945,6 @@ html.dark-mode .message-partheaders {
         padding: 0;
         overflow: hidden;
         box-shadow: var(--mf-shadow-sm);
-        transition: border-color 150ms ease, box-shadow 150ms ease;
-
-        &:focus-within,
-        &:has(.tox.focused) {
-            border-color: var(--mf-accent);
-            box-shadow: 0 0 0 2px rgba(245, 71, 31, 0.16);
-        }
 
         // Plain-text mode fused with the same card background
         textarea#composebody {
@@ -1772,12 +1953,15 @@ html.dark-mode .message-partheaders {
             box-shadow: none !important;
             background-color: var(--mf-editor-bg) !important;
             color: var(--mf-text-primary) !important;
+            caret-color: var(--mf-text-primary) !important;
             padding: 46px 20px 20px !important;
             min-height: 360px;
 
             &:focus {
                 background-color: var(--mf-editor-bg) !important;
+                border: 0 !important;
                 box-shadow: none !important;
+                outline: none !important;
             }
         }
 
@@ -1804,7 +1988,7 @@ html.dark-mode .message-partheaders {
     }
 }
 
-// TinyMCE blended cleanly into MartFlow cards (seamless inside #composebodycontainer; rounded-xl standalone in Identities/Responses)
+// TinyMCE blended cleanly into MartFlow cards (calm border, NO orange focus ring!)
 div.tox,
 html.dark-mode div.tox {
     &.tox-tinymce {
@@ -1815,8 +1999,8 @@ html.dark-mode div.tox {
     }
 
     &.focused {
-        border-color: var(--mf-accent) !important;
-        box-shadow: 0 0 0 2px rgba(245, 71, 31, 0.16) !important;
+        border-color: var(--mf-border) !important;
+        box-shadow: none !important;
     }
 
     #composebodycontainer &.tox-tinymce {
@@ -1885,11 +2069,153 @@ html.dark-mode div.tox {
     }
 }
 
+// Compose right sidebar: compact centered upload dropzone + flush-left/flush-right options
 #compose-attachments.file-upload {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 152px;
+    margin: 14px 14px 8px !important;
+    padding: 20px 16px !important;
     border: 1.5px dashed var(--mf-border) !important;
     border-radius: var(--mf-radius-xl) !important;
-    background-color: var(--mf-surface-alt);
-    padding: 16px;
+    background-color: var(--mf-surface-alt) !important;
+    transition: border-color 150ms ease, background-color 150ms ease;
+
+    &.droptarget {
+        padding: 20px 16px !important;
+
+        &:after {
+            display: none !important;
+            content: none !important;
+        }
+
+        &.active,
+        &.hover {
+            border-color: var(--mf-accent) !important;
+            background-color: var(--mf-accent-soft) !important;
+        }
+    }
+
+    .upload-form {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        padding: 0 !important;
+        margin: 0;
+        text-align: center;
+
+        .hint {
+            margin: 0 !important;
+            font-size: 0.78rem;
+            line-height: 1.4;
+            color: var(--mf-text-muted);
+        }
+
+        a.btn,
+        button {
+            margin: 0 !important;
+        }
+    }
+
+    .attachmentslist {
+        width: 100%;
+        margin: 12px 0 0;
+        padding: 0;
+
+        &:empty {
+            display: none;
+            margin: 0;
+        }
+    }
+}
+
+#compose-options {
+    padding: 14px 16px !important;
+
+    .form-group.row {
+        display: flex !important;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: nowrap;
+        gap: 12px;
+        margin: 0 0 12px 0 !important;
+
+        &:last-child {
+            margin-bottom: 0 !important;
+        }
+
+        & > label.col-form-label {
+            flex: 1 1 auto;
+            width: auto;
+            max-width: none;
+            min-width: 0;
+            padding: 0 !important;
+            margin: 0 !important;
+            text-align: left;
+            font-size: 0.84rem;
+            font-weight: 500;
+            line-height: 1.35;
+            color: var(--mf-text-body);
+        }
+
+        &.form-check > .col-6.form-check {
+            flex: 0 0 auto;
+            width: auto;
+            min-width: 0 !important;
+            max-width: none;
+            margin: 0;
+            padding: 0 !important;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+
+            .custom-switch {
+                margin: 0;
+                padding-left: 1.75rem;
+                min-height: 1.25rem;
+
+                .custom-control-label {
+                    display: block;
+                    min-height: 1.25rem;
+                    cursor: pointer;
+
+                    &::before {
+                        left: -1.75rem;
+                        top: 0.125rem;
+                    }
+
+                    &::after {
+                        left: ~"calc(-1.75rem + 2px)";
+                        top: ~"calc(0.125rem + 2px)";
+                    }
+                }
+            }
+        }
+
+        &:not(.form-check) > .col-6 {
+            flex: 0 0 144px;
+            width: 144px;
+            max-width: 54%;
+            padding: 0 !important;
+            margin: 0;
+            display: flex;
+            justify-content: flex-end;
+
+            select.custom-select,
+            .form-control {
+                width: 100%;
+                min-height: 36px;
+                height: 36px;
+                padding: 0.3rem 2rem 0.3rem 0.7rem;
+                font-size: 0.82rem;
+            }
+        }
+    }
 }
 
 // Nav Tabs (Addressbook / Settings)

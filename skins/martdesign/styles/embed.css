@@ -206,8 +206,10 @@ html:not(.touch) ::-webkit-scrollbar-thumb {
 }
 html,
 body {
-  background-color: #faf9f5;
-  color: #1a1a1a;
+  color-scheme: light;
+  background-color: #faf9f5 !important;
+  color: #1a1a1a !important;
+  caret-color: #1a1a1a !important;
   -webkit-font-smoothing: antialiased;
 }
 body,
@@ -218,8 +220,9 @@ body,
 .mce-content-body {
   margin: 0;
   padding: 16px 20px;
-  background-color: #faf9f5;
-  color: #1a1a1a;
+  background-color: #faf9f5 !important;
+  color: #1a1a1a !important;
+  caret-color: #1a1a1a !important;
   font-size: 14px;
   line-height: 1.65;
   min-height: 100%;
@@ -236,12 +239,20 @@ body,
   border-radius: 0 8px 8px 0;
 }
 html.dark-mode,
-html.dark-mode body {
-  background-color: #181818;
-  color: #fcf9e0;
+html.dark-mode body,
+html.dark-mode body.mce-content-body {
+  color-scheme: dark;
+  background-color: #181818 !important;
+  color: #fcf9e0 !important;
+  caret-color: #fcf9e0 !important;
 }
 html.dark-mode .mce-content-body {
-  background-color: #181818;
+  background-color: #181818 !important;
+  color: #fcf9e0 !important;
+  caret-color: #fcf9e0 !important;
+}
+html.dark-mode .mce-content-body ::selection {
+  background: rgba(245, 71, 31, 0.35);
   color: #fcf9e0;
 }
 html.dark-mode .mce-content-body a {

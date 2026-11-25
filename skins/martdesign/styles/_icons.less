@@ -631,3 +631,11 @@ ul.treelist li div.treetoggle {
 #rcmloginsubmit:before {
     display: none !important;
 }
+
+// Compact Heroicon upload mark inside Compose attachments dropzone
+#compose-attachments.file-upload.droptarget:before {
+    .hi-mask(@hi-upload, 32px);
+    color: var(--mf-text-muted);
+    opacity: 0.72;
+    margin-bottom: 10px;
+}
