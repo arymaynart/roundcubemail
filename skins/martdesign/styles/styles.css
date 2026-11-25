@@ -6980,19 +6980,30 @@ html.dark-mode .custom-select {
   padding-right: 2.25rem;
 }
 .input-group .form-control,
+html.dark-mode .input-group .form-control,
 .input-group .custom-select,
-.input-group .recipient-input {
+html.dark-mode .input-group .custom-select,
+.input-group .recipient-input,
+html.dark-mode .input-group .recipient-input,
+.input-group .input-group-text,
+html.dark-mode .input-group .input-group-text {
   border-radius: 0 !important;
 }
 .input-group > :first-child,
+html.dark-mode .input-group > :first-child,
 .input-group > :first-child > .input-group-text,
+html.dark-mode .input-group > :first-child > .input-group-text,
 .input-group > .recipient-input,
-.input-group > .rounded-left {
+html.dark-mode .input-group > .recipient-input,
+.input-group > .rounded-left,
+html.dark-mode .input-group > .rounded-left {
   border-top-left-radius: var(--mf-radius-lg) !important;
   border-bottom-left-radius: var(--mf-radius-lg) !important;
 }
 .input-group > :last-child,
-.input-group > :last-child > .input-group-text {
+html.dark-mode .input-group > :last-child,
+.input-group > :last-child > .input-group-text,
+html.dark-mode .input-group > :last-child > .input-group-text {
   border-top-right-radius: var(--mf-radius-lg) !important;
   border-bottom-right-radius: var(--mf-radius-lg) !important;
 }
@@ -7003,7 +7014,8 @@ html.dark-mode .input-group .input-group-text {
   color: var(--mf-text-muted) !important;
   min-height: 40px;
 }
-.input-group a.input-group-text:hover {
+.input-group a.input-group-text:hover,
+html.dark-mode .input-group a.input-group-text:hover {
   background-color: var(--mf-surface-hover) !important;
   color: var(--mf-text-primary) !important;
 }
@@ -7073,9 +7085,9 @@ html.dark-mode body.task-login .md-login-hex-stage {
 html.dark-mode .task-login .md-login-hex-svg,
 html.dark-mode body.task-login .md-login-hex-svg {
   position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
+  height: 60%;
+  width: auto;
+  max-width: 68vw;
   display: block;
 }
 .task-login .md-login-hex-svg .l,
@@ -7096,98 +7108,46 @@ html.dark-mode .task-login .md-login-hex-svg .a,
 html.dark-mode body.task-login .md-login-hex-svg .a {
   fill: none;
   stroke: var(--accent);
-  stroke-width: 2;
+  stroke-width: 1.5;
   stroke-linejoin: round;
   stroke-linecap: round;
   vector-effect: non-scaling-stroke;
-  stroke-dasharray: 100;
-  stroke-dashoffset: 100;
-  animation: md-hex-trace 9.6s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+  stroke-dasharray: 24 160;
+  stroke-dashoffset: 30;
 }
-.task-login .md-login-hex-svg .af,
-html.dark-mode .task-login .md-login-hex-svg .af,
-html.dark-mode body.task-login .md-login-hex-svg .af {
-  fill: var(--accent);
-  stroke: var(--page);
-  stroke-width: 2;
-  transform-box: fill-box;
-  transform-origin: center;
+.task-login .md-login-hex-svg .a-p1,
+html.dark-mode .task-login .md-login-hex-svg .a-p1,
+html.dark-mode body.task-login .md-login-hex-svg .a-p1 {
+  animation: md-hex-trace-1 16s ease-in-out infinite;
 }
-.task-login .md-login-hex-svg .af-start,
-html.dark-mode .task-login .md-login-hex-svg .af-start,
-html.dark-mode body.task-login .md-login-hex-svg .af-start {
-  animation: md-hex-node-start 9.6s ease-out infinite;
+.task-login .md-login-hex-svg .a-p2,
+html.dark-mode .task-login .md-login-hex-svg .a-p2,
+html.dark-mode body.task-login .md-login-hex-svg .a-p2 {
+  animation: md-hex-trace-2 16s ease-in-out infinite;
 }
-.task-login .md-login-hex-svg .af-end,
-html.dark-mode .task-login .md-login-hex-svg .af-end,
-html.dark-mode body.task-login .md-login-hex-svg .af-end {
-  animation: md-hex-node-end 9.6s ease-out infinite;
+.task-login .md-login-hex-svg .a-p3,
+html.dark-mode .task-login .md-login-hex-svg .a-p3,
+html.dark-mode body.task-login .md-login-hex-svg .a-p3 {
+  animation: md-hex-trace-3 16s ease-in-out infinite;
 }
-.task-login .md-login-hex-svg .af-dot,
-html.dark-mode .task-login .md-login-hex-svg .af-dot,
-html.dark-mode body.task-login .md-login-hex-svg .af-dot {
-  animation: md-hex-dot 9.6s ease-in-out infinite both;
-}
-.task-login .md-login-hex-svg .af-p1,
-html.dark-mode .task-login .md-login-hex-svg .af-p1,
-html.dark-mode body.task-login .md-login-hex-svg .af-p1 {
-  animation-delay: 0s;
-}
-.task-login .md-login-hex-svg .af-p2,
-html.dark-mode .task-login .md-login-hex-svg .af-p2,
-html.dark-mode body.task-login .md-login-hex-svg .af-p2 {
-  animation-delay: 0.22s;
-}
-.task-login .md-login-hex-svg .af-p3,
-html.dark-mode .task-login .md-login-hex-svg .af-p3,
-html.dark-mode body.task-login .md-login-hex-svg .af-p3 {
-  animation-delay: 0.44s;
-}
-.task-login .md-login-hex-svg .af-p4,
-html.dark-mode .task-login .md-login-hex-svg .af-p4,
-html.dark-mode body.task-login .md-login-hex-svg .af-p4 {
-  animation-delay: 0.66s;
-}
-.task-login .md-login-hex-svg .af-p5,
-html.dark-mode .task-login .md-login-hex-svg .af-p5,
-html.dark-mode body.task-login .md-login-hex-svg .af-p5 {
-  animation-delay: 0.88s;
-}
-.task-login .md-login-hex-svg .af-p6,
-html.dark-mode .task-login .md-login-hex-svg .af-p6,
-html.dark-mode body.task-login .md-login-hex-svg .af-p6 {
-  animation-delay: 1.1s;
-}
-.task-login .md-login-hex-svg .af-pc,
-html.dark-mode .task-login .md-login-hex-svg .af-pc,
-html.dark-mode body.task-login .md-login-hex-svg .af-pc {
-  animation-delay: 1.35s;
-}
-.task-login .md-hex-rede,
-html.dark-mode .task-login .md-hex-rede,
-html.dark-mode body.task-login .md-hex-rede {
-  opacity: 0.92;
-  transform: translateX(10%);
-}
-@media screen and (max-width: 768px) {
-  .task-login .md-hex-rede,
-  html.dark-mode .task-login .md-hex-rede,
-  html.dark-mode body.task-login .md-hex-rede {
-    transform: none;
-  }
+.task-login .md-login-hex-svg .a-p4,
+html.dark-mode .task-login .md-login-hex-svg .a-p4,
+html.dark-mode body.task-login .md-login-hex-svg .a-p4 {
+  animation: md-hex-trace-4 16s ease-in-out infinite;
 }
 .task-login .md-hex-pontos,
 html.dark-mode .task-login .md-hex-pontos,
 html.dark-mode body.task-login .md-hex-pontos {
-  opacity: 0.88;
-  transform: translateX(-10%) scaleX(-1);
+  top: 0;
+  left: 0;
+  opacity: 0.9;
 }
-@media screen and (max-width: 768px) {
-  .task-login .md-hex-pontos,
-  html.dark-mode .task-login .md-hex-pontos,
-  html.dark-mode body.task-login .md-hex-pontos {
-    transform: scaleX(-1);
-  }
+.task-login .md-hex-rede,
+html.dark-mode .task-login .md-hex-rede,
+html.dark-mode body.task-login .md-hex-rede {
+  right: 0;
+  bottom: 0;
+  opacity: 0.95;
 }
 .task-login .md-login-theme-btn,
 html.dark-mode .task-login .md-login-theme-btn,
@@ -7357,107 +7317,57 @@ html.dark-mode body.task-login #login-footer a:hover {
   color: var(--mf-accent);
   text-decoration: underline;
 }
-@keyframes md-hex-trace {
+@keyframes md-hex-trace-1 {
   0% {
-    stroke-dashoffset: 100;
-    opacity: 0;
+    stroke-dashoffset: 30;
   }
-  1.5% {
-    stroke-dashoffset: 100;
-    opacity: 1;
-  }
-  17.1% {
-    stroke-dashoffset: 0;
-    opacity: 1;
-  }
-  62% {
-    stroke-dashoffset: 0;
-    opacity: 1;
-  }
-  76% {
-    stroke-dashoffset: 0;
-    opacity: 0;
+  23% {
+    stroke-dashoffset: -106;
   }
   100% {
-    stroke-dashoffset: 100;
-    opacity: 0;
+    stroke-dashoffset: -106;
   }
 }
-@keyframes md-hex-node-start {
-  0% {
-    opacity: 0;
-    transform: scale(0.5);
-  }
-  4% {
-    opacity: 1;
-    transform: scale(1);
-  }
-  62% {
-    opacity: 1;
-    transform: scale(1);
-  }
-  76% {
-    opacity: 0;
-    transform: scale(0.75);
-  }
-  100% {
-    opacity: 0;
-    transform: scale(0.5);
-  }
-}
-@keyframes md-hex-node-end {
+@keyframes md-hex-trace-2 {
   0%,
-  15.5% {
-    opacity: 0;
-    transform: scale(0.5);
+  24% {
+    stroke-dashoffset: 30;
   }
-  20.5% {
-    opacity: 1;
-    transform: scale(1);
-  }
-  62% {
-    opacity: 1;
-    transform: scale(1);
-  }
-  76% {
-    opacity: 0;
-    transform: scale(0.75);
-  }
+  48%,
   100% {
-    opacity: 0;
-    transform: scale(0.5);
+    stroke-dashoffset: -106;
   }
 }
-@keyframes md-hex-dot {
+@keyframes md-hex-trace-3 {
   0%,
-  4% {
-    opacity: 0;
-    transform: scale(0.55);
+  49% {
+    stroke-dashoffset: 30;
   }
-  14% {
-    opacity: 0.92;
-    transform: scale(1);
-  }
-  58% {
-    opacity: 0.92;
-    transform: scale(1);
-  }
-  72% {
-    opacity: 0;
-    transform: scale(0.7);
-  }
+  73%,
   100% {
-    opacity: 0;
-    transform: scale(0.55);
+    stroke-dashoffset: -106;
+  }
+}
+@keyframes md-hex-trace-4 {
+  0%,
+  74% {
+    stroke-dashoffset: 30;
+  }
+  98%,
+  100% {
+    stroke-dashoffset: -106;
   }
 }
 @media (prefers-reduced-motion: reduce) {
-  .task-login .md-login-hex-svg .a,
-  .task-login .md-login-hex-svg .af {
+  .task-login .md-login-hex-svg .a-p1 {
     animation: none !important;
+    stroke-dasharray: none !important;
     stroke-dashoffset: 0 !important;
-    opacity: 1 !important;
-    transform: none !important;
+  }
+  .task-login .md-login-hex-svg .a-p2,
+  .task-login .md-login-hex-svg .a-p3,
+  .task-login .md-login-hex-svg .a-p4 {
+    display: none !important;
   }
 }
 @media screen and (min-width: 481px) {
@@ -8816,21 +8726,43 @@ html.dark-mode div.tox .tox-dialog {
 }
 #compose-options .form-group.row.form-check > .col-6.form-check .custom-switch {
   margin: 0;
-  padding-left: 1.75rem;
-  min-height: 1.25rem;
+  padding: 0 !important;
+  width: 30px;
+  min-height: 28px;
+  display: flex;
+  align-items: center;
+}
+html.touch #compose-options .form-group.row.form-check > .col-6.form-check .custom-switch {
+  width: 40px;
+  min-height: 30px;
 }
 #compose-options .form-group.row.form-check > .col-6.form-check .custom-switch .custom-control-label {
   display: block;
-  min-height: 1.25rem;
+  width: 30px;
+  min-height: 28px;
+  padding: 0 !important;
+  margin: 0 !important;
   cursor: pointer;
 }
+html.touch #compose-options .form-group.row.form-check > .col-6.form-check .custom-switch .custom-control-label {
+  width: 40px;
+  min-height: 30px;
+}
 #compose-options .form-group.row.form-check > .col-6.form-check .custom-switch .custom-control-label::before {
-  left: -1.75rem;
-  top: 0.125rem;
+  left: 2px;
+  top: 6px;
+  margin: 0 !important;
+}
+html.touch #compose-options .form-group.row.form-check > .col-6.form-check .custom-switch .custom-control-label::before {
+  top: 4px;
 }
 #compose-options .form-group.row.form-check > .col-6.form-check .custom-switch .custom-control-label::after {
-  left: calc(-1.75rem + 2px);
-  top: calc(0.125rem + 2px);
+  left: 4px;
+  top: 8px;
+  margin: 0 !important;
+}
+html.touch #compose-options .form-group.row.form-check > .col-6.form-check .custom-switch .custom-control-label::after {
+  top: 6px;
 }
 #compose-options .form-group.row:not(.form-check) > .col-6 {
   flex: 0 0 144px;

@@ -90,6 +90,30 @@ html.dark-mode .mce-content-body {
         color: @md-carbono-muted;
         background-color: #121212;
     }
+
+    // Display-only dark-mode readability for dark-ink signatures (NEVER alters outgoing HTML)
+    [style*="color: #1a1a1a" i],
+    [style*="color:#1a1a1a" i],
+    [style*="color: rgb(26, 26, 26)" i],
+    [style*="color: #000" i],
+    [style*="color:#000" i],
+    [style*="color: rgb(0, 0, 0)" i],
+    [style*="color: #111" i],
+    [style*="color:#111" i],
+    [style*="color: #222" i],
+    [style*="color:#222" i],
+    [style*="color: #333" i],
+    [style*="color:#333" i],
+    [style*="color: black" i],
+    [style*="color:black" i] {
+        color: @md-carbono-ink !important;
+    }
+
+    [style*="color: #5a5040" i],
+    [style*="color:#5a5040" i],
+    [style*="color: rgb(90, 80, 64)" i] {
+        color: @md-carbono-body !important;
+    }
 }
 
 .rcmail-inline-message {

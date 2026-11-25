@@ -345,10 +345,12 @@ html.dark-mode .custom-select {
     padding-right: 2.25rem;
 }
 
-.input-group {
+.input-group,
+html.dark-mode .input-group {
     .form-control,
     .custom-select,
-    .recipient-input {
+    .recipient-input,
+    .input-group-text {
         border-radius: 0 !important;
     }
 
@@ -366,8 +368,7 @@ html.dark-mode .custom-select {
         border-bottom-right-radius: var(--mf-radius-lg) !important;
     }
 
-    .input-group-text,
-    html.dark-mode & .input-group-text {
+    .input-group-text {
         background-color: var(--mf-input-bg) !important;
         border: 1px solid var(--mf-border) !important;
         color: var(--mf-text-muted) !important;
@@ -440,7 +441,7 @@ html.dark-mode body.task-login {
         text-align: left;
     }
 
-    // Inline animated hexagonal patterns (rede-hex + pontos-hex), themed via tokens.css vars
+    // Inline hexagonal patterns: static dots top-left (60% h), animated grid bottom-right (60% h)
     .md-login-hex-stage {
         position: fixed;
         inset: 0;
@@ -453,9 +454,9 @@ html.dark-mode body.task-login {
 
     .md-login-hex-svg {
         position: absolute;
-        inset: 0;
-        width: 100%;
-        height: 100%;
+        height: 60%;
+        width: auto;
+        max-width: 68vw;
         display: block;
 
         .l {
@@ -472,61 +473,32 @@ html.dark-mode body.task-login {
         .a {
             fill: none;
             stroke: var(--accent);
-            stroke-width: 2;
+            stroke-width: 1.5;
             stroke-linejoin: round;
             stroke-linecap: round;
             vector-effect: non-scaling-stroke;
-            stroke-dasharray: 100;
-            stroke-dashoffset: 100;
-            animation: md-hex-trace 9.6s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+            stroke-dasharray: 24 160;
+            stroke-dashoffset: 30;
         }
 
-        .af {
-            fill: var(--accent);
-            stroke: var(--page);
-            stroke-width: 2;
-            transform-box: fill-box;
-            transform-origin: center;
-        }
-
-        .af-start {
-            animation: md-hex-node-start 9.6s ease-out infinite;
-        }
-
-        .af-end {
-            animation: md-hex-node-end 9.6s ease-out infinite;
-        }
-
-        .af-dot {
-            animation: md-hex-dot 9.6s ease-in-out infinite both;
-        }
-
-        .af-p1 { animation-delay: 0s; }
-        .af-p2 { animation-delay: 0.22s; }
-        .af-p3 { animation-delay: 0.44s; }
-        .af-p4 { animation-delay: 0.66s; }
-        .af-p5 { animation-delay: 0.88s; }
-        .af-p6 { animation-delay: 1.10s; }
-        .af-pc { animation-delay: 1.35s; }
+        .a-p1 { animation: md-hex-trace-1 16s ease-in-out infinite; }
+        .a-p2 { animation: md-hex-trace-2 16s ease-in-out infinite; }
+        .a-p3 { animation: md-hex-trace-3 16s ease-in-out infinite; }
+        .a-p4 { animation: md-hex-trace-4 16s ease-in-out infinite; }
     }
 
-    // Frame the centered login card harmoniously: hex network on right, hex dots on left
-    .md-hex-rede {
-        opacity: 0.92;
-        transform: translateX(10%);
-
-        @media screen and (max-width: @screen-width-small) {
-            transform: none;
-        }
-    }
-
+    // Top-left quadrant: static hex dot field (epicenter upper-left)
     .md-hex-pontos {
-        opacity: 0.88;
-        transform: translateX(-10%) scaleX(-1);
+        top: 0;
+        left: 0;
+        opacity: 0.9;
+    }
 
-        @media screen and (max-width: @screen-width-small) {
-            transform: scaleX(-1);
-        }
+    // Bottom-right quadrant: hex grid with traveling thin orange trace (epicenter lower-right)
+    .md-hex-rede {
+        right: 0;
+        bottom: 0;
+        opacity: 0.95;
     }
 
     .md-login-theme-btn {
@@ -676,109 +648,40 @@ html.dark-mode body.task-login {
     }
 }
 
-@keyframes md-hex-trace {
-    0% {
-        stroke-dashoffset: 100;
-        opacity: 0;
-    }
-    1.5% {
-        stroke-dashoffset: 100;
-        opacity: 1;
-    }
-    17.1% {
-        stroke-dashoffset: 0;
-        opacity: 1;
-    }
-    62% {
-        stroke-dashoffset: 0;
-        opacity: 1;
-    }
-    76% {
-        stroke-dashoffset: 0;
-        opacity: 0;
-    }
-    100% {
-        stroke-dashoffset: 100;
-        opacity: 0;
-    }
+// Sequential thin orange tracer across 4 distinct hex grid paths:
+// born at start -> grows -> glides -> shrinks to 0 at end (zero fade-in/fade-out!)
+@keyframes md-hex-trace-1 {
+    0%   { stroke-dashoffset: 30; }
+    23%  { stroke-dashoffset: -106; }
+    100% { stroke-dashoffset: -106; }
 }
 
-@keyframes md-hex-node-start {
-    0% {
-        opacity: 0;
-        transform: scale(0.5);
-    }
-    4% {
-        opacity: 1;
-        transform: scale(1);
-    }
-    62% {
-        opacity: 1;
-        transform: scale(1);
-    }
-    76% {
-        opacity: 0;
-        transform: scale(0.75);
-    }
-    100% {
-        opacity: 0;
-        transform: scale(0.5);
-    }
+@keyframes md-hex-trace-2 {
+    0%, 24%   { stroke-dashoffset: 30; }
+    48%, 100% { stroke-dashoffset: -106; }
 }
 
-@keyframes md-hex-node-end {
-    0%, 15.5% {
-        opacity: 0;
-        transform: scale(0.5);
-    }
-    20.5% {
-        opacity: 1;
-        transform: scale(1);
-    }
-    62% {
-        opacity: 1;
-        transform: scale(1);
-    }
-    76% {
-        opacity: 0;
-        transform: scale(0.75);
-    }
-    100% {
-        opacity: 0;
-        transform: scale(0.5);
-    }
+@keyframes md-hex-trace-3 {
+    0%, 49%   { stroke-dashoffset: 30; }
+    73%, 100% { stroke-dashoffset: -106; }
 }
 
-@keyframes md-hex-dot {
-    0%, 4% {
-        opacity: 0;
-        transform: scale(0.55);
-    }
-    14% {
-        opacity: 0.92;
-        transform: scale(1);
-    }
-    58% {
-        opacity: 0.92;
-        transform: scale(1);
-    }
-    72% {
-        opacity: 0;
-        transform: scale(0.7);
-    }
-    100% {
-        opacity: 0;
-        transform: scale(0.55);
-    }
+@keyframes md-hex-trace-4 {
+    0%, 74%   { stroke-dashoffset: 30; }
+    98%, 100% { stroke-dashoffset: -106; }
 }
 
 @media (prefers-reduced-motion: reduce) {
-    .task-login .md-login-hex-svg .a,
-    .task-login .md-login-hex-svg .af {
+    .task-login .md-login-hex-svg .a-p1 {
         animation: none !important;
+        stroke-dasharray: none !important;
         stroke-dashoffset: 0 !important;
-        opacity: 1 !important;
-        transform: none !important;
+    }
+
+    .task-login .md-login-hex-svg .a-p2,
+    .task-login .md-login-hex-svg .a-p3,
+    .task-login .md-login-hex-svg .a-p4 {
+        display: none !important;
     }
 }
 
@@ -2176,22 +2079,48 @@ html.dark-mode div.tox {
 
             .custom-switch {
                 margin: 0;
-                padding-left: 1.75rem;
-                min-height: 1.25rem;
+                padding: 0 !important;
+                width: 30px;
+                min-height: 28px;
+                display: flex;
+                align-items: center;
+
+                html.touch & {
+                    width: 40px;
+                    min-height: 30px;
+                }
 
                 .custom-control-label {
                     display: block;
-                    min-height: 1.25rem;
+                    width: 30px;
+                    min-height: 28px;
+                    padding: 0 !important;
+                    margin: 0 !important;
                     cursor: pointer;
 
+                    html.touch & {
+                        width: 40px;
+                        min-height: 30px;
+                    }
+
                     &::before {
-                        left: -1.75rem;
-                        top: 0.125rem;
+                        left: 2px;
+                        top: 6px;
+                        margin: 0 !important;
+
+                        html.touch & {
+                            top: 4px;
+                        }
                     }
 
                     &::after {
-                        left: ~"calc(-1.75rem + 2px)";
-                        top: ~"calc(0.125rem + 2px)";
+                        left: 4px;
+                        top: 8px;
+                        margin: 0 !important;
+
+                        html.touch & {
+                            top: 6px;
+                        }
                     }
                 }
             }
