@@ -419,6 +419,108 @@ html.dark-mode .input-group {
     }
 }
 
+// v2.7: ONE capsule per field, also when the field is built from nested groups
+// (Sieve forward / vacation / redirect combos: <select> + <span.input-group> with
+// <input> [@ domain]). Only the outer edges of the whole component are rounded;
+// every inner joint stays square, and the focus halo is drawn once, outside.
+.input-group .input-group,
+html.dark-mode .input-group .input-group {
+    border-radius: 0;
+    box-shadow: none !important;
+
+    // A nested group never opens the component: its first part keeps square left corners
+    & > :first-child,
+    & > :first-child > .input-group-text {
+        border-top-left-radius: 0 !important;
+        border-bottom-left-radius: 0 !important;
+    }
+
+    // ...and its left edge is an inner divider, so it stays neutral on focus
+    &:focus-within > :first-child,
+    &:focus-within > :first-child > .input-group-text {
+        border-left-color: var(--mf-border) !important;
+    }
+}
+
+.input-group > .input-group:not(:last-child),
+html.dark-mode .input-group > .input-group:not(:last-child) {
+    & > :last-child,
+    & > :last-child > .input-group-text {
+        border-top-right-radius: 0 !important;
+        border-bottom-right-radius: 0 !important;
+    }
+}
+
+// Outer right edge lives inside the nested group: light it with the rest of the capsule
+.input-group:focus-within > .input-group:last-child,
+html.dark-mode .input-group:focus-within > .input-group:last-child {
+    & > :last-child,
+    & > :last-child > .input-group-text {
+        border-right-color: var(--mf-accent) !important;
+    }
+}
+
+// Combo whose right side is hidden (Elastic marks the select as .alone): fully rounded
+// (Elastic uses `.input-group-combo select:first-of-type.alone` with a .25rem radius)
+.input-group-combo > select:first-of-type.alone,
+html.dark-mode .input-group-combo > select:first-of-type.alone {
+    border-radius: var(--mf-radius-lg) !important;
+}
+
+.input-group-combo:focus-within > select.alone,
+html.dark-mode .input-group-combo:focus-within > select.alone {
+    border-right-color: var(--mf-accent) !important;
+}
+
+// Groups that ARE a table cell (Sieve forward / vacation rows) are taller than their
+// controls: a halo on the cell would draw an empty band under the fields. There the
+// orange outer border of the capsule alone marks the focus.
+td.input-group:focus-within,
+html.dark-mode td.input-group:focus-within {
+    box-shadow: none !important;
+}
+
+// On phones a combo does not fit on one line and Bootstrap wraps it, cutting the capsule
+// in half. There it is stacked on purpose: the select on one line, the target group on
+// the next, each one a complete capsule with its own focus border.
+html.layout-phone .input-group.input-group-combo {
+    flex-wrap: wrap;
+    row-gap: 8px;
+
+    & > select:first-of-type {
+        flex: 1 1 100%;
+        width: 100%;
+        max-width: 100%;
+        border-radius: var(--mf-radius-lg) !important;
+        border-color: var(--mf-border) !important;
+
+        &:focus {
+            border-color: var(--mf-accent) !important;
+        }
+    }
+
+    & > .input-group {
+        flex: 1 1 100%;
+
+        & > :first-child,
+        & > :first-child > .input-group-text {
+            border-top-left-radius: var(--mf-radius-lg) !important;
+            border-bottom-left-radius: var(--mf-radius-lg) !important;
+        }
+
+        &:not(:focus-within) .form-control,
+        &:not(:focus-within) .custom-select,
+        &:not(:focus-within) .input-group-text {
+            border-color: var(--mf-border) !important;
+        }
+
+        &:focus-within > :first-child,
+        &:focus-within > :first-child > .input-group-text {
+            border-left-color: var(--mf-accent) !important;
+        }
+    }
+}
+
 .recipient-input {
     padding: 4px 10px !important;
 
@@ -1712,6 +1814,15 @@ html.iframe.dark-mode body {
     color: var(--mf-text-primary);
 }
 
+// v2.7: the decorative patterns live BEHIND every element of the panel.
+// The iframe body is an isolated stacking context and the two pattern layers
+// sit at z-index -1 inside it: painted right after the canvas color and before
+// any in-flow content (cards, text, inputs, lists, message headers), on every
+// iframe screen (Settings, Filters, Contacts, message preview), whatever the DOM.
+html.iframe body {
+    isolation: isolate;
+}
+
 html.iframe body::before {
     content: "";
     position: fixed;
@@ -1722,7 +1833,7 @@ html.iframe body::before {
     background: url('../images/pontos-hex-creme.svg?v=25') left top / contain no-repeat;
     opacity: 0.48;
     pointer-events: none;
-    z-index: 0;
+    z-index: -1;
 }
 
 html.iframe body::after {
@@ -1735,7 +1846,7 @@ html.iframe body::after {
     background: url('../images/bg-symbol-creme.svg') right bottom / contain no-repeat;
     opacity: 0.42;
     pointer-events: none;
-    z-index: 0;
+    z-index: -1;
 }
 
 html.iframe.dark-mode body::before {
@@ -2011,13 +2122,15 @@ html.iframe body > .formcontent {
         }
     }
 
+    // v2.7: the footer is the same surface as the card (only a hairline divider between
+    // them), so the Save bar reads as part of the card in light AND dark mode
     & > .formbuttons {
         position: relative;
         z-index: 2;
         flex: 0 0 auto;
-        background-color: var(--mf-surface-alt) !important;
+        background-color: var(--mf-surface) !important;
         border: 1px solid var(--mf-border-subtle);
-        border-top: 1px solid var(--mf-border-subtle);
+        border-top: 1px solid var(--mf-border);
         border-radius: 0 0 var(--mf-radius-xl) var(--mf-radius-xl);
         padding: 14px 24px !important;
         margin: 0;

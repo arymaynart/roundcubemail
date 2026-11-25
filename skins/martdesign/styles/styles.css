@@ -7089,6 +7089,80 @@ html.dark-mode .input-group a.input-group-text:hover {
   background-color: var(--mf-surface-hover) !important;
   color: var(--mf-text-primary) !important;
 }
+.input-group .input-group,
+html.dark-mode .input-group .input-group {
+  border-radius: 0;
+  box-shadow: none !important;
+}
+.input-group .input-group > :first-child,
+html.dark-mode .input-group .input-group > :first-child,
+.input-group .input-group > :first-child > .input-group-text,
+html.dark-mode .input-group .input-group > :first-child > .input-group-text {
+  border-top-left-radius: 0 !important;
+  border-bottom-left-radius: 0 !important;
+}
+.input-group .input-group:focus-within > :first-child,
+html.dark-mode .input-group .input-group:focus-within > :first-child,
+.input-group .input-group:focus-within > :first-child > .input-group-text,
+html.dark-mode .input-group .input-group:focus-within > :first-child > .input-group-text {
+  border-left-color: var(--mf-border) !important;
+}
+.input-group > .input-group:not(:last-child) > :last-child,
+html.dark-mode .input-group > .input-group:not(:last-child) > :last-child,
+.input-group > .input-group:not(:last-child) > :last-child > .input-group-text,
+html.dark-mode .input-group > .input-group:not(:last-child) > :last-child > .input-group-text {
+  border-top-right-radius: 0 !important;
+  border-bottom-right-radius: 0 !important;
+}
+.input-group:focus-within > .input-group:last-child > :last-child,
+html.dark-mode .input-group:focus-within > .input-group:last-child > :last-child,
+.input-group:focus-within > .input-group:last-child > :last-child > .input-group-text,
+html.dark-mode .input-group:focus-within > .input-group:last-child > :last-child > .input-group-text {
+  border-right-color: var(--mf-accent) !important;
+}
+.input-group-combo > select:first-of-type.alone,
+html.dark-mode .input-group-combo > select:first-of-type.alone {
+  border-radius: var(--mf-radius-lg) !important;
+}
+.input-group-combo:focus-within > select.alone,
+html.dark-mode .input-group-combo:focus-within > select.alone {
+  border-right-color: var(--mf-accent) !important;
+}
+td.input-group:focus-within,
+html.dark-mode td.input-group:focus-within {
+  box-shadow: none !important;
+}
+html.layout-phone .input-group.input-group-combo {
+  flex-wrap: wrap;
+  row-gap: 8px;
+}
+html.layout-phone .input-group.input-group-combo > select:first-of-type {
+  flex: 1 1 100%;
+  width: 100%;
+  max-width: 100%;
+  border-radius: var(--mf-radius-lg) !important;
+  border-color: var(--mf-border) !important;
+}
+html.layout-phone .input-group.input-group-combo > select:first-of-type:focus {
+  border-color: var(--mf-accent) !important;
+}
+html.layout-phone .input-group.input-group-combo > .input-group {
+  flex: 1 1 100%;
+}
+html.layout-phone .input-group.input-group-combo > .input-group > :first-child,
+html.layout-phone .input-group.input-group-combo > .input-group > :first-child > .input-group-text {
+  border-top-left-radius: var(--mf-radius-lg) !important;
+  border-bottom-left-radius: var(--mf-radius-lg) !important;
+}
+html.layout-phone .input-group.input-group-combo > .input-group:not(:focus-within) .form-control,
+html.layout-phone .input-group.input-group-combo > .input-group:not(:focus-within) .custom-select,
+html.layout-phone .input-group.input-group-combo > .input-group:not(:focus-within) .input-group-text {
+  border-color: var(--mf-border) !important;
+}
+html.layout-phone .input-group.input-group-combo > .input-group:focus-within > :first-child,
+html.layout-phone .input-group.input-group-combo > .input-group:focus-within > :first-child > .input-group-text {
+  border-left-color: var(--mf-accent) !important;
+}
 .recipient-input {
   padding: 4px 10px !important;
 }
@@ -8425,6 +8499,9 @@ html.iframe.dark-mode body {
   background-color: var(--mf-canvas) !important;
   color: var(--mf-text-primary);
 }
+html.iframe body {
+  isolation: isolate;
+}
 html.iframe body::before {
   content: "";
   position: fixed;
@@ -8435,7 +8512,7 @@ html.iframe body::before {
   background: url('../images/pontos-hex-creme.svg?v=25') left top / contain no-repeat;
   opacity: 0.48;
   pointer-events: none;
-  z-index: 0;
+  z-index: -1;
 }
 html.iframe body::after {
   content: "";
@@ -8447,7 +8524,7 @@ html.iframe body::after {
   background: url('../images/bg-symbol-creme.svg') right bottom / contain no-repeat;
   opacity: 0.42;
   pointer-events: none;
-  z-index: 0;
+  z-index: -1;
 }
 html.iframe.dark-mode body::before {
   background-image: url('../images/pontos-hex-carbono.svg?v=25');
@@ -8776,9 +8853,9 @@ html.iframe body > .formcontent {
   position: relative;
   z-index: 2;
   flex: 0 0 auto;
-  background-color: var(--mf-surface-alt) !important;
+  background-color: var(--mf-surface) !important;
   border: 1px solid var(--mf-border-subtle);
-  border-top: 1px solid var(--mf-border-subtle);
+  border-top: 1px solid var(--mf-border);
   border-radius: 0 0 var(--mf-radius-xl) var(--mf-radius-xl);
   padding: 14px 24px !important;
   margin: 0;
