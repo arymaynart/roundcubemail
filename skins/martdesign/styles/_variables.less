@@ -1,0 +1,310 @@
+/**
+ * mARTdesign Design System Tokens for Roundcube Webmail (extends Elastic)
+ *
+ * Creme (Light) + Carbono (Dark) — flat surfaces, zero gradients,
+ * white-on-orange rule, WCAG AA text contrast tokens.
+ */
+
+// -----------------------------------------------------------------
+// Brand & semantic palette (shared viva tokens + theme -text tokens)
+// -----------------------------------------------------------------
+@md-accent:                 #f5471f;
+@md-accent-deep:            #d83c16;
+@md-accent-secondary:       #f47721;
+@md-accent-text-creme:      #a83010;
+@md-accent-text-carbono:    #ff6a3d;
+@md-accent-soft-creme:      #fae8e1;
+@md-accent-soft-carbono:    #2f211c;
+
+@md-creme-page:             #eceae0;
+@md-creme-panel:            #dedad0;
+@md-creme-card:             #ffffff;
+@md-creme-inset:            #f3f0e4;
+@md-creme-ink:              #1a1a1a;
+@md-creme-body:             #5a5040;
+@md-creme-border:           #e8e4d8;
+@md-creme-border-strong:    #d4cfbf;
+@md-creme-muted:            #8a8070;
+
+@md-carbono-page:           #1a1a1a;
+@md-carbono-panel:          #202020;
+@md-carbono-card:           #272727;
+@md-carbono-inset:          #303030;
+@md-carbono-ink:            #ffffff;
+@md-carbono-text:           #e8e4dc;
+@md-carbono-body:           #999999;
+@md-carbono-border:         #333333;
+@md-carbono-border-strong:  #404040;
+
+@md-success:                #178f45;
+@md-success-text-creme:     #116b34;
+@md-success-text-carbono:   #4cc27a;
+@md-danger:                 #e5372a;
+@md-danger-text-creme:      #b91c1c;
+@md-danger-text-carbono:    #ff7a6e;
+@md-warning:                #b86e00;
+@md-warning-text-creme:     #8a5200;
+@md-warning-text-carbono:   #f0a830;
+
+// -----------------------------------------------------------------
+// Elastic Core Variables — Creme (Light Mode)
+// -----------------------------------------------------------------
+@color-main:                @md-accent;
+@color-main-dark:           @md-accent-deep;
+@color-black:               @md-creme-ink;
+@color-font:                @md-creme-ink;
+@color-link:                @md-accent-text-creme;
+@color-link-hover:          @md-accent-deep;
+@color-border:              @md-creme-border-strong;
+@color-error:               @md-danger;
+@color-success:             @md-success;
+@color-warning:             @md-warning;
+
+@color-black-shade-text:    @md-creme-body;
+@color-black-shade-border:  @md-creme-border-strong;
+@color-black-shade-bg:      @md-creme-border;
+
+// Layout surfaces (Creme)
+@color-layout-border:                   @md-creme-border-strong;
+@color-layout-header:                   @md-creme-ink;
+@color-layout-sidebar-background:       @md-creme-page;
+@color-layout-list-background:          @md-creme-card;
+@color-layout-content-background:       @md-creme-card;
+@color-layout-header-background:        @md-creme-page;
+@color-layout-footer-background:        @md-creme-page;
+
+@color-layout-mobile-header-background: @md-creme-panel;
+@color-layout-mobile-footer-background: @md-creme-page;
+
+// Task menu rail (Carbono rail across both themes)
+@color-taskmenu-background:                     @md-carbono-page;
+@color-taskmenu-button:                         #d6d2c7;
+@color-taskmenu-button-selected:                #ffffff;
+@color-taskmenu-button-action:                  #ffffff;
+
+@color-taskmenu-button-selected-background:     @md-carbono-card;
+@color-taskmenu-button-action-background:       @md-accent;
+
+@color-taskmenu-button-hover:                   #ffffff;
+@color-taskmenu-button-selected-hover:          #ffffff;
+@color-taskmenu-button-action-hover:            #ffffff;
+
+@color-taskmenu-button-background-hover:        @md-carbono-card;
+@color-taskmenu-button-action-background-hover: @md-accent-deep;
+@color-taskmenu-button-logout:                  @md-danger-text-carbono;
+@color-taskmenu-button-logout-hover:            #ffffff;
+
+// Toolbar & searchbar
+@color-toolbar-button:                  @md-creme-ink;
+@color-toolbar-button-background-hover: @md-creme-panel;
+@color-searchbar-background:            @md-creme-inset;
+
+// Popover / dropdown hover (white on orange)
+@color-menu-hover:                      #ffffff;
+@color-menu-hover-background:           @md-accent;
+
+// Listings (folders & messages)
+@color-list:                            @md-creme-ink;
+@color-list-selected:                   @md-creme-ink;
+@color-list-selected-background:        @md-accent-soft-creme;
+@color-list-flagged:                    @md-accent-deep;
+@color-list-deleted:                    fadeout(@md-creme-body, 35%);
+@color-list-secondary:                  @md-creme-body;
+@color-list-droptarget-background:      #f6ebd4;
+@color-list-focus-indicator:            @md-accent;
+
+@color-list-border:                     @md-creme-border;
+@color-list-badge:                      #ffffff;
+@color-list-badge-background:           @md-accent;
+@color-list-recent:                     @md-accent-text-creme;
+@color-list-recent-badge:               #ffffff;
+@color-list-recent-badge-background:    @md-accent-deep;
+
+@color-list-pagenav:                    @md-creme-body;
+@color-list-icon:                       @md-creme-muted;
+@color-list-unread-status:              @md-accent;
+
+@color-attachmentlist-border:           @md-creme-border-strong;
+@color-attachmentlist-background:       @md-creme-inset;
+
+// Drag layer
+@color-drag-layer:                      #ffffff;
+@color-drag-layer-background:           @md-carbono-page;
+@color-drag-layer-shadow:               rgba(26, 26, 26, 0.2);
+
+// Alerts & Toast messages
+@color-message:                         @md-creme-ink;
+@color-message-border:                  @md-creme-border-strong;
+@color-message-background:              @md-creme-inset;
+@color-message-text:                    #ffffff;
+@color-message-link:                    @md-accent-text-creme;
+@color-message-link-font-weight:        600;
+@color-message-information:             @md-carbono-page;
+@color-message-success:                 @md-success;
+@color-message-warning:                 @md-warning;
+@color-message-error:                   @md-danger;
+@color-message-loading:                 @md-carbono-card;
+@color-message-information-text:        #ffffff;
+@color-message-success-text:            #ffffff;
+@color-message-warning-text:            #ffffff;
+@color-message-error-text:              #ffffff;
+@color-message-loading-text:            #ffffff;
+@color-message-error-box:               @md-danger-text-creme;
+@color-message-information-box:         @md-creme-ink;
+@color-message-success-box:             @md-success-text-creme;
+@color-message-warning-box:             @md-warning-text-creme;
+@color-message-error-box-background:        fadeout(@md-danger, 88%);
+@color-message-information-box-background:  @md-creme-inset;
+@color-message-success-box-background:      fadeout(@md-success, 88%);
+@color-message-warning-box-background:      fadeout(@md-warning, 88%);
+
+// Popovers & dialogs
+@color-popover-shadow:                       rgba(26, 26, 26, 0.14);
+@color-popover-separator:                    @md-creme-body;
+@color-popover-separator-background:         @md-creme-page;
+@color-popover-mobile-header:                #ffffff;
+@color-popover-mobile-header-background:     @md-carbono-page;
+@color-popover-mobile-dropbutton-background: @md-creme-inset;
+
+@color-dialog-overlay-background:            rgba(26, 26, 26, 0.55);
+@color-dialog-header:                        @md-creme-ink;
+@color-dialog-header-border:                 @md-creme-border-strong;
+
+@color-spinner-circle:                       @md-creme-panel;
+@color-spinner-item:                         @md-accent;
+
+// Forms & Buttons (Creme)
+@color-input:                                @md-creme-ink;
+@color-input-border:                         @md-creme-border-strong;
+@color-input-border-focus:                   @md-accent;
+@color-input-border-focus-shadow:            rgba(244, 119, 33, 0.28);
+@color-input-border-invalid:                 @md-danger;
+@color-input-border-invalid-shadow:          rgba(229, 55, 42, 0.25);
+@color-input-addon-background:               @md-creme-inset;
+@color-recipient-input-border:               @md-creme-border-strong;
+@color-recipient-input-background:           @md-creme-inset;
+@color-input-placeholder:                    @md-creme-muted;
+
+@color-checkbox:                             @md-accent;
+@color-checkbox-checked:                     @md-accent;
+@color-checkbox-checked-disabled:            fadeout(@md-accent, 45%);
+@color-checkbox-focus:                       @md-accent-secondary;
+@color-checkbox-focus-shadow:                @color-input-border-focus-shadow;
+
+@color-form-hint:                            @md-creme-body;
+@color-image-upload-background:              @md-creme-inset;
+
+@color-btn-primary:                          #ffffff;
+@color-btn-primary-background:               @md-accent;
+@color-btn-secondary:                        #ffffff;
+@color-btn-secondary-background:             @md-carbono-page;
+@color-btn-danger:                           #ffffff;
+@color-btn-danger-background:                @md-danger;
+
+// Quota widget (high contrast)
+@color-quota-background:                     @md-creme-panel;
+@color-quota-text:                           @md-creme-ink;
+@color-quota-value:                          @md-accent;
+@color-quota-value-warning:                  @md-danger;
+
+// Mail preview & blockquotes
+@color-blockquote-background:                @md-creme-inset;
+@color-blockquote-0:                         @md-accent-text-creme;
+@color-blockquote-1:                         @md-success-text-creme;
+@color-blockquote-2:                         @md-warning-text-creme;
+@color-blockquote-0-border:                  @md-accent;
+@color-blockquote-1-border:                  @md-success;
+@color-blockquote-2-border:                  @md-warning;
+
+@color-mail-signature:                       @md-creme-body;
+@color-mail-headers:                         @md-creme-body;
+@color-messagepart-border:                   @md-creme-border;
+@color-messagepart-background:               @md-creme-inset;
+@color-spellcheck-link:                      @md-danger;
+
+@color-table-border:                         @md-creme-border-strong;
+@color-table-selected:                       @md-creme-ink;
+@color-table-selected-background:            @md-accent-soft-creme;
+
+// Datepicker
+@color-datepicker-border:                    @md-creme-border-strong;
+@color-datepicker-font:                      @md-creme-ink;
+@color-datepicker-highlight:                 @md-accent-text-creme;
+@color-datepicker-highlight-background:      @md-accent-soft-creme;
+@color-datepicker-active:                    #ffffff;
+@color-datepicker-active-background:         @md-accent;
+
+// Editor & image tools
+@color-editor-disabled-mask:                 rgba(236, 234, 224, 0.85);
+@color-image-tools:                          #ffffff;
+@color-image-tools-background:               rgba(26, 26, 26, 0.88);
+@color-image-tools-hover:                    @md-accent;
+
+// Scrollbars (Creme)
+@color-scrollbar-thumb:                      #bfbcb0;
+@color-scrollbar-track:                      @md-creme-page;
+
+// -----------------------------------------------------------------
+// Elastic Dark Mode Variables — Carbono (Dark Mode)
+// -----------------------------------------------------------------
+@color-dark-main:                            @md-accent;
+@color-dark-background:                      @md-carbono-page;
+@color-dark-font:                            @md-carbono-text;
+@color-dark-border:                          @md-carbono-border;
+@color-dark-hint:                            @md-carbono-body;
+@color-dark-information:                     @md-carbono-card;
+@color-dark-success:                         @md-success;
+@color-dark-warning:                         @md-warning;
+@color-dark-error:                           @md-danger;
+
+@color-dark-list-selected:                   #ffffff;
+@color-dark-list-selected-background:        @md-accent-soft-carbono;
+@color-dark-list-badge:                      #ffffff;
+@color-dark-list-badge-background:           @md-accent;
+@color-dark-list-deleted:                    #6e6a64;
+@color-dark-list-droptarget-background:      #3a2e14;
+@color-dark-list-border:                     #2b2b2b;
+
+@color-dark-input:                           #ffffff;
+@color-dark-input-border:                    @md-carbono-border-strong;
+@color-dark-input-background:                @md-carbono-card;
+@color-dark-input-focus:                     #ffffff;
+@color-dark-input-border-focus:              @md-accent;
+@color-dark-input-background-focus:          @md-carbono-inset;
+@color-dark-input-addon-background:          @md-carbono-panel;
+@color-dark-input-addon-background-focus:    @md-carbono-inset;
+@color-dark-checkbox:                        @md-carbono-border-strong;
+@color-dark-checkbox-checked:                @md-accent;
+
+@color-dark-btn:                             #ffffff;
+@color-dark-btn-primary-background:          @md-accent;
+@color-dark-btn-secondary-background:        @md-carbono-border;
+@color-dark-btn-danger-background:           @md-danger;
+
+@color-dark-dialog-overlay-background:       rgba(0, 0, 0, 0.72);
+@color-dark-popover-background:              @md-carbono-panel;
+@color-dark-popover-border:                  @md-carbono-border-strong;
+
+@color-dark-message-information:             @md-carbono-card;
+@color-dark-message-success:                 @md-success;
+@color-dark-message-warning:                 @md-warning;
+@color-dark-message-error:                   @md-danger;
+@color-dark-message-loading:                 @md-carbono-card;
+
+@color-dark-scrollbar-thumb:                 @md-carbono-border-strong;
+@color-dark-scrollbar-track:                 @md-carbono-page;
+
+@color-dark-blockquote-0:                    @md-accent-text-carbono;
+@color-dark-blockquote-1:                    @md-success-text-carbono;
+@color-dark-blockquote-2:                    @md-warning-text-carbono;
+@color-dark-blockquote-0-border:             @md-accent;
+@color-dark-blockquote-1-border:             @md-success;
+@color-dark-blockquote-2-border:             @md-warning;
+
+@color-dark-code-keyword:                    #ff8b66;
+@color-dark-code-atom:                       #8ab4f8;
+@color-dark-code-number:                     #f0a830;
+@color-dark-code-operator:                   #e8e4dc;
+@color-dark-code-string:                     #4cc27a;
+@color-dark-code-string-2:                   #f47721;
+@color-dark-code-comment:                    #999999;

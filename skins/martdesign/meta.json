@@ -1,0 +1,22 @@
+{
+	"name": "mARTdesign",
+	"author": "mARTdesign (extends Elastic by Aleksander Machniak)",
+	"extends": "elastic",
+	"license": "Creative Commons Attribution-ShareAlike",
+	"license-url": "http://creativecommons.org/licenses/by-sa/3.0/",
+	"config": {
+		"supported_layouts": ["widescreen"],
+		"jquery_ui_colors_theme": "bootstrap",
+		"embed_css_location": "/styles/embed.css",
+		"editor_css_location": "/styles/embed.css",
+		"dark_mode_support": true,
+		"media_browser_css_location": "none",
+		"additional_logo_types": ["dark", "small", "small-dark"],
+		"favicon": "/images/favicon.svg"
+	},
+	"meta": {
+		"viewport": "width=device-width, initial-scale=1.0, shrink-to-fit=no, maximum-scale=1.0",
+		"theme-color": "#eceae0",
+		"msapplication-navbutton-color": "#1a1a1a"
+	}
+}
