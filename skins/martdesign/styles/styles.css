@@ -7249,13 +7249,6 @@ html.dark-mode .task-login .md-login-hex-svg .d,
 html.dark-mode body.task-login .md-login-hex-svg .d {
   fill: var(--pattern-line);
 }
-.task-login .md-login-hex-svg .af,
-html.dark-mode .task-login .md-login-hex-svg .af,
-html.dark-mode body.task-login .md-login-hex-svg .af {
-  fill: var(--accent);
-  stroke: var(--page);
-  stroke-width: 2;
-}
 .task-login .md-login-hex-svg .a,
 html.dark-mode .task-login .md-login-hex-svg .a,
 html.dark-mode body.task-login .md-login-hex-svg .a {
@@ -7293,55 +7286,9 @@ html.dark-mode .task-login .md-login-hex-svg .a-p5,
 html.dark-mode body.task-login .md-login-hex-svg .a-p5 {
   animation: md-hex-trace-5 21s linear infinite;
 }
-.task-login .md-login-hex-svg .md-pulse circle,
-html.dark-mode .task-login .md-login-hex-svg .md-pulse circle,
-html.dark-mode body.task-login .md-login-hex-svg .md-pulse circle,
-.task-login .md-login-hex-svg .md-heart circle,
-html.dark-mode .task-login .md-login-hex-svg .md-heart circle,
-html.dark-mode body.task-login .md-login-hex-svg .md-heart circle {
-  fill: var(--accent);
-  transform-box: fill-box;
-  transform-origin: center;
-}
-.task-login .md-login-hex-svg .md-pulse circle,
-html.dark-mode .task-login .md-login-hex-svg .md-pulse circle,
-html.dark-mode body.task-login .md-login-hex-svg .md-pulse circle {
-  opacity: 0;
-  animation: md-pulse 9.6s ease-in-out infinite;
-}
-.task-login .md-login-hex-svg .md-pulse-2 circle,
-html.dark-mode .task-login .md-login-hex-svg .md-pulse-2 circle,
-html.dark-mode body.task-login .md-login-hex-svg .md-pulse-2 circle {
-  animation-delay: 1.6s;
-}
-.task-login .md-login-hex-svg .md-pulse-3 circle,
-html.dark-mode .task-login .md-login-hex-svg .md-pulse-3 circle,
-html.dark-mode body.task-login .md-login-hex-svg .md-pulse-3 circle {
-  animation-delay: 3.2s;
-}
-.task-login .md-login-hex-svg .md-pulse-4 circle,
-html.dark-mode .task-login .md-login-hex-svg .md-pulse-4 circle,
-html.dark-mode body.task-login .md-login-hex-svg .md-pulse-4 circle {
-  animation-delay: 4.8s;
-}
-.task-login .md-login-hex-svg .md-pulse-5 circle,
-html.dark-mode .task-login .md-login-hex-svg .md-pulse-5 circle,
-html.dark-mode body.task-login .md-login-hex-svg .md-pulse-5 circle {
-  animation-delay: 6.4s;
-}
-.task-login .md-login-hex-svg .md-pulse-6 circle,
-html.dark-mode .task-login .md-login-hex-svg .md-pulse-6 circle,
-html.dark-mode body.task-login .md-login-hex-svg .md-pulse-6 circle {
-  animation-delay: 8s;
-}
-.task-login .md-login-hex-svg .md-heart circle,
-html.dark-mode .task-login .md-login-hex-svg .md-heart circle,
-html.dark-mode body.task-login .md-login-hex-svg .md-heart circle {
-  animation: md-heart 1.6s ease-in-out infinite;
-}
-.task-login .md-hex-pontos,
-html.dark-mode .task-login .md-hex-pontos,
-html.dark-mode body.task-login .md-hex-pontos {
+.task-login .md-hex-grade,
+html.dark-mode .task-login .md-hex-grade,
+html.dark-mode body.task-login .md-hex-grade {
   top: 0;
   left: 0;
   opacity: 0.9;
@@ -7570,54 +7517,6 @@ html.dark-mode body.task-login #login-footer a:hover {
     stroke-dashoffset: -101;
   }
 }
-@keyframes md-pulse {
-  0% {
-    opacity: 0;
-    transform: scale(0.6);
-  }
-  1.67% {
-    opacity: 1;
-    transform: scale(2.2);
-  }
-  3.75% {
-    opacity: 1;
-    transform: scale(1.2);
-  }
-  5.42% {
-    opacity: 1;
-    transform: scale(1.8);
-  }
-  8.33% {
-    opacity: 1;
-    transform: scale(1);
-  }
-  10.42% {
-    opacity: 0;
-    transform: scale(0.6);
-  }
-  100% {
-    opacity: 0;
-    transform: scale(0.6);
-  }
-}
-@keyframes md-heart {
-  0% {
-    transform: scale(1);
-  }
-  10% {
-    transform: scale(2.2);
-  }
-  22.5% {
-    transform: scale(1.2);
-  }
-  32.5% {
-    transform: scale(1.8);
-  }
-  50%,
-  100% {
-    transform: scale(1);
-  }
-}
 @media (prefers-reduced-motion: reduce) {
   .task-login .md-login-hex-svg .a-p1 {
     animation: none !important;
@@ -7626,13 +7525,6 @@ html.dark-mode body.task-login #login-footer a:hover {
   }
   .task-login .md-login-hex-svg .a:not(.a-p1) {
     display: none !important;
-  }
-  .task-login .md-login-hex-svg .md-pulse {
-    display: none !important;
-  }
-  .task-login .md-login-hex-svg .md-heart circle {
-    animation: none !important;
-    transform: none !important;
   }
 }
 @media screen and (min-width: 481px) {
