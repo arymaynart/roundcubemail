@@ -25,8 +25,10 @@
 
 html,
 body {
-    background-color: #faf9f5;
-    color: @md-creme-ink;
+    color-scheme: light;
+    background-color: #faf9f5 !important;
+    color: @md-creme-ink !important;
+    caret-color: @md-creme-ink !important;
     -webkit-font-smoothing: antialiased;
 }
 
@@ -39,8 +41,9 @@ body,
 .mce-content-body {
     margin: 0;
     padding: 16px 20px;
-    background-color: #faf9f5;
-    color: @md-creme-ink;
+    background-color: #faf9f5 !important;
+    color: @md-creme-ink !important;
+    caret-color: @md-creme-ink !important;
     font-size: 14px;
     line-height: 1.65;
     min-height: 100%;
@@ -60,14 +63,23 @@ body,
 }
 
 html.dark-mode,
-html.dark-mode body {
-    background-color: #181818;
-    color: @md-carbono-ink;
+html.dark-mode body,
+html.dark-mode body.mce-content-body {
+    color-scheme: dark;
+    background-color: #181818 !important;
+    color: @md-carbono-ink !important;
+    caret-color: @md-carbono-ink !important;
 }
 
 html.dark-mode .mce-content-body {
-    background-color: #181818;
-    color: @md-carbono-ink;
+    background-color: #181818 !important;
+    color: @md-carbono-ink !important;
+    caret-color: @md-carbono-ink !important;
+
+    ::selection {
+        background: rgba(245, 71, 31, 0.35);
+        color: @md-carbono-ink;
+    }
 
     a {
         color: @md-accent-text-carbono;

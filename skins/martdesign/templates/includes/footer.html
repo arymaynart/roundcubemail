@@ -9,58 +9,7 @@
 
 <script src="/deps/bootstrap.bundle.min.js"></script>
 <script src="/ui.js"></script>
-<script>
-(function () {
-	var root = document.documentElement;
-
-	function syncEditorFrames() {
-		var isDark = root.classList.contains('dark-mode');
-		var frames = document.querySelectorAll('.tox-edit-area__iframe');
-		for (var i = 0; i < frames.length; i++) {
-			try {
-				var doc = frames[i].contentDocument || (frames[i].contentWindow && frames[i].contentWindow.document);
-				if (doc && doc.documentElement) {
-					doc.documentElement.classList.toggle('dark-mode', isDark);
-				}
-			} catch (e) {}
-		}
-	}
-
-	// Keep TinyMCE iframe synchronized with Creme/Carbono mode immediately on load & toggle
-	if (window.MutationObserver) {
-		new MutationObserver(syncEditorFrames).observe(root, {
-			attributes: true,
-			attributeFilter: ['class']
-		});
-	}
-
-	if (window.rcmail) {
-		rcmail.addEventListener('editor-load', function () {
-			syncEditorFrames();
-			setTimeout(syncEditorFrames, 120);
-		});
-	}
-
-	// Collapse left rail immediately on pointer leave after toggling Light/Dark
-	var railLinks = document.querySelectorAll('#taskmenu a.theme, #taskmenu a.about');
-	for (var j = 0; j < railLinks.length; j++) {
-		railLinks[j].addEventListener('click', function () {
-			this.blur();
-			setTimeout(syncEditorFrames, 30);
-		});
-	}
-
-	// Shorten overly wide pt-BR "Agrupamento por assunto" in list header toolbar (tooltip stays full)
-	var threadLabels = document.querySelectorAll('#layout-list > .header a.threads span.inner');
-	for (var k = 0; k < threadLabels.length; k++) {
-		if ((threadLabels[k].textContent || '').trim().toLowerCase() === 'agrupamento por assunto') {
-			threadLabels[k].textContent = 'Agrupar';
-		}
-	}
-
-	syncEditorFrames();
-})();
-</script>
+<script src="/martdesign.js"></script>
 
 </body>
 </html>
