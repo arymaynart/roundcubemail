@@ -263,6 +263,27 @@ html.dark-mode .mce-content-body blockquote {
   color: #a09880;
   background-color: #121212;
 }
+html.dark-mode .mce-content-body [style*="color: #1a1a1a" i],
+html.dark-mode .mce-content-body [style*="color:#1a1a1a" i],
+html.dark-mode .mce-content-body [style*="color: rgb(26, 26, 26)" i],
+html.dark-mode .mce-content-body [style*="color: #000" i],
+html.dark-mode .mce-content-body [style*="color:#000" i],
+html.dark-mode .mce-content-body [style*="color: rgb(0, 0, 0)" i],
+html.dark-mode .mce-content-body [style*="color: #111" i],
+html.dark-mode .mce-content-body [style*="color:#111" i],
+html.dark-mode .mce-content-body [style*="color: #222" i],
+html.dark-mode .mce-content-body [style*="color:#222" i],
+html.dark-mode .mce-content-body [style*="color: #333" i],
+html.dark-mode .mce-content-body [style*="color:#333" i],
+html.dark-mode .mce-content-body [style*="color: black" i],
+html.dark-mode .mce-content-body [style*="color:black" i] {
+  color: #fcf9e0 !important;
+}
+html.dark-mode .mce-content-body [style*="color: #5a5040" i],
+html.dark-mode .mce-content-body [style*="color:#5a5040" i],
+html.dark-mode .mce-content-body [style*="color: rgb(90, 80, 64)" i] {
+  color: #d6d0be !important;
+}
 .rcmail-inline-message {
   border: 1px solid #d4cfbf;
   border-radius: 12px;
